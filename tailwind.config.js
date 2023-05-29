@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-      'yt-spec-base-background': '#0f0f0f'
+      'yt-spec-base-background': '#0f0f0f',
+      'yt-spec-additive-background': '#ffffff1a'
       },
     },
   },
