@@ -21,14 +21,14 @@ export class SidebarComponent extends PureComponent {
 
   render() {
     return (
-      <div className="w-2/12 bg-[#212121] pr-1 overflow-auto pb-8 sidebar min-w-[180px]">
-        <ul className="flex flex-col border-b-2 border-gray-700">
+      <div className="w-2/12 bg-yt-spec-base-background pr-1 overflow-auto pb-8 pt-2 sidebar min-w-[180px]">
+        <ul className="flex flex-col border-b-2 border-gray-700 mx-1 pb-2">
           {mainLinks.map(({ icon, name }) => {
             return (
               <li
                 key={name}
-                className={`pl-6 py-3 hover:bg-zinc-600 ${
-                  name === "Home" ? "bg-slate-600" : ""
+                className={`pl-6 py-3 hover:bg-zinc-600 rounded-[10px] ${
+                  name === "Home" ? "bg-yt-spec-additive-background" : ""
                 }`}
               >
                 <a href="#" className="flex items-center gap-5">
@@ -39,10 +39,13 @@ export class SidebarComponent extends PureComponent {
             );
           })}
         </ul>
-        <ul className="flex flex-col border-b-2 border-gray-700">
+        <ul className="flex flex-col border-b-2 border-gray-700 mx-1 pb-2 pt-2">
           {secondaryLinks.map(({ icon, name }) => {
             return (
-              <li key={name} className={`pl-6 py-3 hover:bg-zinc-600 `}>
+              <li
+                key={name}
+                className={`pl-6 py-3 hover:bg-zinc-600 rounded-[10px] `}
+              >
                 <a href="#" className="flex items-center gap-5">
                   {icon}
                   <span className="text-sm tracking-wider">{name}</span>
@@ -51,10 +54,13 @@ export class SidebarComponent extends PureComponent {
             );
           })}
         </ul>
-        <ul className="flex flex-col border-b-2 border-gray-700">
+        <ul className="flex flex-col border-b-2 border-gray-700 mx-1 pb-2 pt-2">
           {subscriptionLinks.map(({ icon, name }) => {
             return (
-              <li key={name} className={`pl-6 py-3 hover:bg-zinc-600 `}>
+              <li
+                key={name}
+                className={`pl-6 py-3 hover:bg-zinc-600 rounded-[10px] `}
+              >
                 <a href="#" className="flex items-center gap-5">
                   {icon}
                   <span className="text-sm tracking-wider">{name}</span>
@@ -63,10 +69,13 @@ export class SidebarComponent extends PureComponent {
             );
           })}
         </ul>
-        <ul className="flex flex-col border-b-2 border-gray-700">
+        <ul className="flex flex-col border-b-2 border-gray-700 mx-1 pb-2 pt-2">
           {helpLinks.map(({ icon, name }) => {
             return (
-              <li key={name} className={`pl-6 py-3 hover:bg-zinc-600 `}>
+              <li
+                key={name}
+                className={`pl-6 py-3 hover:bg-zinc-600 rounded-[10px] `}
+              >
                 <a href="#" className="flex items-center gap-5">
                   {icon}
                   <span className="text-sm tracking-wider">{name}</span>
@@ -85,9 +94,11 @@ export class SidebarComponent extends PureComponent {
             return <li key={name}>{name}</li>;
           })}
         </ul>
-        <span className="px-4 text-sm text-zinc-400">
-          &copy; 2023 Wiktor Koscielny
-        </span>
+        <div className="mx-4">
+          <span className="text-sm text-zinc-400">
+            &copy; 2023 Wiktor Koscielny
+          </span>
+        </div>
         <br />
       </div>
     );
