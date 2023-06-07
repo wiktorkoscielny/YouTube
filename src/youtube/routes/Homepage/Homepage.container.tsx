@@ -38,14 +38,13 @@ class HomepageContainer extends PureComponent<Props, State> {
 
   containerFunctions = {};
 
-  state = { videos: [] }
 
   componentDidMount() {
     const { getHomePageVideos } = this.props;
 
     const videosData = getHomePageVideos(false);
 
-    this.setState({ videos: videosData });
+    console.log(videosData)
   }
 
   containerProps() {

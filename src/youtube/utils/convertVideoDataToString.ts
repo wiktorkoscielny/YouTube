@@ -1,4 +1,4 @@
-export const convertDataToString = (
+export const convertVideoDataToString = (
   labelValue: string,
   isSub = false
 ): string => {
