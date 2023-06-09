@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 import NavbarContainer from "../../components/Navbar/Navbar.container";
 import SidebarContainer from "../../components/Sidebar/Sidebar.container";
 
-
 /** @namespace Youtube/Component/Homepage/Component */
 export class HomepageComponent extends PureComponent {
   render() {

@@ -17,13 +17,14 @@ function mapStateToProps(state: any) {
 /** @namespace Component/Homepage/Container/mapDispatchToProps */
 function mapDispatchToProps(dispatch: any) {
   return {
-    getHomePageVideos: (payload: boolean) => dispatch(getHomePageVideos(payload)),
+    getHomePageVideos: (payload: boolean) =>
+      dispatch(getHomePageVideos(payload)),
   };
 }
 
 type State = {
-  videos: object
-}
+  videos: object;
+};
 
 type Props = ReturnType<typeof mapDispatchToProps> &
   ReturnType<typeof mapDispatchToProps>;
@@ -38,13 +39,12 @@ class HomepageContainer extends PureComponent<Props, State> {
 
   containerFunctions = {};
 
-
   componentDidMount() {
     const { getHomePageVideos } = this.props;
 
     const videosData = getHomePageVideos(false);
 
-    console.log(videosData)
+    console.log(videosData);
   }
 
   containerProps() {

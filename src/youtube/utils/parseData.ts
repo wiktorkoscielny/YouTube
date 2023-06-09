@@ -8,28 +8,28 @@ import { HomePageVideos } from "../store/types";
 const API_KEY = process.env.REACT_APP_YT_DATA_API_KEY;
 
 export const parseData = async (items: any[]) => {
-    try {
-        const videosIds: string[] = [];
-        const channelIds: string[] = [];
-        items.forEach(
-           ( item: {snippet: {channelId: string}; id: {videoId: string}}) => {
-                const {channelId} = item.snippet;
-                const {videoId} = item.id;
+  try {
+    const videosIds: string[] = [];
+    const channelIds: string[] = [];
+    items.forEach(
+      (item: { snippet: { channelId: string }; id: { videoId: string } }) => {
+        const { channelId } = item.snippet;
+        const { videoId } = item.id;
 
-                channelIds.push(channelId);
-                videosIds.push(videoId)
-            }
-        );
+        channelIds.push(channelId);
+        videosIds.push(videoId);
+      }
+    );
 
-        const {
-            data: { items: channelsData },
-          } = await axios.get(
-            `${YOUTUBE_API_URL}/channels?part=snippet,contentDetails&id=${channelIds.join(
-              ","
-            )}&key=${API_KEY}`
-          );
+    const {
+      data: { items: channelsData },
+    } = await axios.get(
+      `${YOUTUBE_API_URL}/channels?part=snippet,contentDetails&id=${channelIds.join(
+        ","
+      )}&key=${API_KEY}`
+    );
 
-        const parsedChannelsData: { id: string; image: string }[] = [];
+    const parsedChannelsData: { id: string; image: string }[] = [];
     channelsData.forEach(
       (channel: {
         id: string;
@@ -42,12 +42,12 @@ export const parseData = async (items: any[]) => {
     );
 
     const {
-        data: { items: videosData },
-      } = await axios.get(
-        `${YOUTUBE_API_URL}/videos?part=contentDetails,statistics&id=${videosIds.join(
-          ","
-        )}&key=${API_KEY}`
-      );
+      data: { items: videosData },
+    } = await axios.get(
+      `${YOUTUBE_API_URL}/videos?part=contentDetails,statistics&id=${videosIds.join(
+        ","
+      )}&key=${API_KEY}`
+    );
 
     const parsedData: HomePageVideos[] = [];
     items.forEach(
@@ -69,22 +69,18 @@ export const parseData = async (items: any[]) => {
           (data) => data.id === item.snippet.channelId
         )!;
         const {
-            id: {
-                videoId
+          id: { videoId },
+          snippet: {
+            title,
+            description,
+            thumbnails: {
+              medium: { url },
             },
-            snippet: {
-                title,
-                description,
-                thumbnails: {
-                    medium: {
-                        url
-                    }
-                },
-                channelId,
-                channelTitle,
-                publishedAt
-            }
-          } = item;
+            channelId,
+            channelTitle,
+            publishedAt,
+          },
+        } = item;
         if (channelImage)
           parsedData.push({
             videoId: videoId,
@@ -109,7 +105,7 @@ export const parseData = async (items: any[]) => {
     );
 
     return parsedData;
-    } catch(errors) {
-        console.log(errors);
-    }
-}
+  } catch (errors) {
+    console.log(errors);
+  }
+};
