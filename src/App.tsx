@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Homepage from "./youtube/routes/Homepage/Homepage";
+import Homepage from "./youtube/routes/Homepage/Homepage.container";
 import Searchpage from "./youtube/routes/Searchpage/Searchpage";
 import Watchpage from "./youtube/routes/Watchpage/Watchpage";
 
