@@ -11,7 +11,9 @@ import { getHomePageVideos } from "../../store/reducers/getMainVideos";
 
 /** @namespace Component/Homepage/Container/mapStateToProps */
 function mapStateToProps(state: any) {
-  return {};
+  return {
+    videos: state.youtubeApp.videos
+  };
 }
 
 /** @namespace Component/Homepage/Container/mapDispatchToProps */
@@ -22,9 +24,7 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-type State = {
-  videos: object;
-};
+type State = {};
 
 type Props = ReturnType<typeof mapDispatchToProps> &
   ReturnType<typeof mapDispatchToProps>;
@@ -32,20 +32,20 @@ type Props = ReturnType<typeof mapDispatchToProps> &
 /** @namespace Youtube/Component/Homepage/Container */
 class HomepageContainer extends PureComponent<Props, State> {
   static propTypes = {
-    getHomePageVideos: PropTypes.func.isRequired,
+    getHomePageVideos: PropTypes.func.isRequired
   };
 
-  static defaultProps = {};
+  state: State = {};
 
-  containerFunctions = {};
+  static defaultProps = {};
 
   componentDidMount() {
     const { getHomePageVideos } = this.props;
 
-    const videosData = getHomePageVideos(false);
-
-    console.log(videosData);
+    return getHomePageVideos(false);
   }
+
+  containerFunctions = {};
 
   containerProps() {
     const {} = this.props;

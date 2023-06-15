@@ -81,6 +81,7 @@ export const parseData = async (items: any[]) => {
             publishedAt,
           },
         } = item;
+
         if (channelImage)
           parsedData.push({
             videoId: videoId,

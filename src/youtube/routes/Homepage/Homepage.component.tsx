@@ -18,6 +18,7 @@ export class HomepageComponent extends PureComponent {
         </div>
         <div className="flex" style={{ height: "92.5vh" }}>
           <SidebarContainer />
+          
         </div>
       </div>
     );

@@ -13,6 +13,7 @@ export const getHomePageVideos = createAsyncThunk(
     const {
       youtubeApp: { nextPageToken: nextPageTokenFromState, videos },
     } = getState() as RootState;
+    
     const {
       data: { items, nextPageToken },
     } = await axios.get(
@@ -20,8 +21,9 @@ export const getHomePageVideos = createAsyncThunk(
         isNext ? `pageToken=${nextPageTokenFromState}` : ""
       }`
     );
+
     const parsedData: HomePageVideos[] = await parseData(items);
-    
-    return { parsedData: [...videos, ...parsedData], nextPageToken }
+
+    return { parsedData: [...videos, ...parsedData], nextPageToken };
   }
 );
