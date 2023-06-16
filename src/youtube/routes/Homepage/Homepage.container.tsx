@@ -24,15 +24,16 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-type State = {};
+export type State = {};
 
-type Props = ReturnType<typeof mapDispatchToProps> &
-  ReturnType<typeof mapDispatchToProps>;
+export type Props = ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps>;
 
 /** @namespace Youtube/Component/Homepage/Container */
 class HomepageContainer extends PureComponent<Props, State> {
   static propTypes = {
-    getHomePageVideos: PropTypes.func.isRequired
+    getHomePageVideos: PropTypes.func.isRequired,
+    videos: PropTypes.object
   };
 
   state: State = {};
@@ -48,9 +49,13 @@ class HomepageContainer extends PureComponent<Props, State> {
   containerFunctions = {};
 
   containerProps() {
-    const {} = this.props;
+    const {
+      videos
+    } = this.props;
 
-    return {};
+    return {
+      videos
+    };
   }
 
   render() {
