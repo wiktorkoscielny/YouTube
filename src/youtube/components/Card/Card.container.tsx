@@ -5,8 +5,8 @@
 
 import { PureComponent } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import CardComponent from "./Card.component";
+import { HomePageVideos } from "../../store/types";
 
 /** @namespace Component/Card/Container/mapStateToProps */
 function mapStateToProps(state: any) {
@@ -18,33 +18,33 @@ function mapDispatchToProps(dispatch: any) {
   return {};
 }
 
+export type InheritedCardProps = {
+  data?: HomePageVideos;
+  key?: string;
+};
+
 type State = {};
 
 type Props = ReturnType<typeof mapDispatchToProps> &
-  ReturnType<typeof mapStateToProps>;
+  ReturnType<typeof mapStateToProps> &
+  InheritedCardProps;
 
 /** @namespace Youtube/Component/Card/Container */
 class CardContainer extends PureComponent<Props, State> {
-  static propTypes = {};
-
-  state: State = {};
-
-  static defaultProps = {};
-
   containerFunctions = {};
 
   containerProps() {
-    const {} = this.props;
+    const { data, key } = this.props;
 
-    return {};
+    return {
+      data,
+      key,
+    };
   }
 
   render() {
     return (
-      <CardComponent
-        {...this.containerProps()}
-        {...this.containerFunctions}
-      />
+      <CardComponent {...this.containerProps()} {...this.containerFunctions} />
     );
   }
 }

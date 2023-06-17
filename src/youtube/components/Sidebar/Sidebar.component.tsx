@@ -21,7 +21,8 @@ export class SidebarComponent extends PureComponent {
 
   render() {
     return (
-      <div className="w-2/12 bg-yt-spec-base-background pr-1 overflow-auto pb-8 pt-2 sidebar min-w-[180px]">
+      <div className="w-2/12 bg-yt-spec-base-background pr-1 overflow-y-hidden
+                      hover:overflow-y-auto pb-8 pt-2 sidebar min-w-[180px]">
         <ul className="flex flex-col border-b-2 border-gray-700 mx-1 pb-2">
           {mainLinks.map(({ icon, name }) => {
             return (

@@ -5,14 +5,13 @@
 
 import { PureComponent } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import HomepageComponent from "./Homepage.component";
 import { getHomePageVideos } from "../../store/reducers/getMainVideos";
 
 /** @namespace Component/Homepage/Container/mapStateToProps */
 function mapStateToProps(state: any) {
   return {
-    videos: state.youtubeApp.videos
+    videos: state.youtubeApp.videos,
   };
 }
 
@@ -31,14 +30,7 @@ export type Props = ReturnType<typeof mapDispatchToProps> &
 
 /** @namespace Youtube/Component/Homepage/Container */
 class HomepageContainer extends PureComponent<Props, State> {
-  static propTypes = {
-    getHomePageVideos: PropTypes.func.isRequired,
-    videos: PropTypes.object
-  };
-
   state: State = {};
-
-  static defaultProps = {};
 
   componentDidMount() {
     const { getHomePageVideos } = this.props;
@@ -49,12 +41,11 @@ class HomepageContainer extends PureComponent<Props, State> {
   containerFunctions = {};
 
   containerProps() {
-    const {
-      videos
-    } = this.props;
+    const { videos, getHomePageVideos } = this.props;
 
     return {
-      videos
+      videos,
+      getHomePageVideos
     };
   }
 
