@@ -5,13 +5,14 @@
 
 import { PureComponent } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import HomepageComponent from "./Homepage.component";
 import { getHomePageVideos } from "../../store/reducers/getMainVideos";
 
 /** @namespace Component/Homepage/Container/mapStateToProps */
 function mapStateToProps(state: any) {
-  return {};
+  return {
+    videos: state.youtubeApp.videos,
+  };
 }
 
 /** @namespace Component/Homepage/Container/mapDispatchToProps */
@@ -22,35 +23,30 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-type State = {
-  videos: object;
-};
+export type State = {};
 
-type Props = ReturnType<typeof mapDispatchToProps> &
-  ReturnType<typeof mapDispatchToProps>;
+export type Props = ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps>;
 
 /** @namespace Youtube/Component/Homepage/Container */
 class HomepageContainer extends PureComponent<Props, State> {
-  static propTypes = {
-    getHomePageVideos: PropTypes.func.isRequired,
-  };
-
-  static defaultProps = {};
-
-  containerFunctions = {};
+  state: State = {};
 
   componentDidMount() {
     const { getHomePageVideos } = this.props;
 
-    const videosData = getHomePageVideos(false);
-
-    console.log(videosData);
+    return getHomePageVideos(false);
   }
 
-  containerProps() {
-    const {} = this.props;
+  containerFunctions = {};
 
-    return {};
+  containerProps() {
+    const { videos, getHomePageVideos } = this.props;
+
+    return {
+      videos,
+      getHomePageVideos
+    };
   }
 
   render() {
