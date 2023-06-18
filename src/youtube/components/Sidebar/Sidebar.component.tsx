@@ -4,7 +4,6 @@
  */
 
 import { PureComponent } from "react";
-import PropTypes from "prop-types";
 import {
   subscriptionLinks,
   helpLinks,
@@ -15,10 +14,6 @@ import {
 
 /** @namespace Youtube/Component/Sidebar/Component */
 export class SidebarComponent extends PureComponent {
-  static propTypes = {};
-
-  state = {};
-
   render() {
     return (
       <div className="w-2/12 bg-yt-spec-base-background pr-1 overflow-y-hidden
