@@ -5,31 +5,50 @@
 
 import { PureComponent } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import NavbarComponent from "./Navbar.component";
+import { clearVideos, changeSearchParams } from "../../store";
+import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
 
 /** @namespace Component/Navbar/Container/mapStateToProps */
 function mapStateToProps(state: any) {
-  return {};
+  return {
+    searchParams: state.youtubeApp.searchParams,
+  };
 }
 
 /** @namespace Component/Navbar/Container/mapDispatchToProps */
 function mapDispatchToProps(dispatch: any) {
-  return {};
+  return {
+    getSearchPageVideos: (payload: boolean) =>
+      dispatch(getSearchPageVideos(payload)),
+    clearVideosData: () => dispatch(clearVideos()),
+    changeSearchParams: (payload: any) => dispatch(changeSearchParams(payload)),
+  };
 }
 
+export type State = {};
+
+export type Props = ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps>;
+
 /** @namespace Youtube/Component/Navbar/Container */
-class NavbarContainer extends PureComponent {
-  static propTypes = {};
-
-  static defaultProps = {};
-
+class NavbarContainer extends PureComponent<Props, State> {
   containerFunctions = {};
 
   containerProps() {
-    const {} = this.props;
+    const {
+      getSearchPageVideos,
+      clearVideosData,
+      searchParams,
+      changeSearchParams,
+    } = this.props;
 
-    return {};
+    return {
+      getSearchPageVideos,
+      clearVideosData,
+      searchParams,
+      changeSearchParams,
+    };
   }
 
   render() {
@@ -42,7 +61,4 @@ class NavbarContainer extends PureComponent {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavbarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);

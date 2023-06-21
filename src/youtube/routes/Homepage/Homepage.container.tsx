@@ -7,6 +7,7 @@ import { PureComponent } from "react";
 import { connect } from "react-redux";
 import HomepageComponent from "./Homepage.component";
 import { getHomePageVideos } from "../../store/reducers/getMainVideos";
+import { clearVideos } from "../../store";
 
 /** @namespace Component/Homepage/Container/mapStateToProps */
 function mapStateToProps(state: any) {
@@ -20,6 +21,7 @@ function mapDispatchToProps(dispatch: any) {
   return {
     getHomePageVideos: (payload: boolean) =>
       dispatch(getHomePageVideos(payload)),
+    clearVideosData: () => dispatch(clearVideos())
   };
 }
 
@@ -33,9 +35,13 @@ class HomepageContainer extends PureComponent<Props, State> {
   state: State = {};
 
   componentDidMount() {
-    const { getHomePageVideos } = this.props;
+    const {
+      getHomePageVideos,
+      clearVideosData
+    } = this.props;
 
-    return getHomePageVideos(false);
+    getHomePageVideos(false);
+    clearVideosData();
   }
 
   containerFunctions = {};
