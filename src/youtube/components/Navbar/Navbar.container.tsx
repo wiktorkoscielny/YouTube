@@ -11,19 +11,12 @@ import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
 
 /** @namespace Component/Navbar/Container/mapStateToProps */
 function mapStateToProps(state: any) {
-  return {
-    searchParams: state.youtubeApp.searchParams,
-  };
+  return {};
 }
 
 /** @namespace Component/Navbar/Container/mapDispatchToProps */
 function mapDispatchToProps(dispatch: any) {
-  return {
-    getSearchPageVideos: (payload: boolean) =>
-      dispatch(getSearchPageVideos(payload)),
-    clearVideosData: () => dispatch(clearVideos()),
-    changeSearchParams: (payload: any) => dispatch(changeSearchParams(payload)),
-  };
+  return {};
 }
 
 export type State = {};
@@ -36,19 +29,9 @@ class NavbarContainer extends PureComponent<Props, State> {
   containerFunctions = {};
 
   containerProps() {
-    const {
-      getSearchPageVideos,
-      clearVideosData,
-      searchParams,
-      changeSearchParams,
-    } = this.props;
+    const {} = this.props;
 
-    return {
-      getSearchPageVideos,
-      clearVideosData,
-      searchParams,
-      changeSearchParams,
-    };
+    return {};
   }
 
   render() {

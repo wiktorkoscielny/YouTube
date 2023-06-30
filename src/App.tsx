@@ -1,7 +1,7 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from "./youtube/routes/Homepage/Homepage.container";
-import Searchpage from "./youtube/routes/Searchpage/Searchpage";
+import SearchpageContainer
+from "./youtube/routes/Searchpage/Searchpage.container";
 import Watchpage from "./youtube/routes/Watchpage/Watchpage";
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/search" element={<Searchpage />} />
+        <Route path="/search" element={<SearchpageContainer />} />
         <Route path="/watch/:id" element={<Watchpage />} />
       </Routes>
     </BrowserRouter>

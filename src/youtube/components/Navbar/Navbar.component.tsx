@@ -14,18 +14,10 @@ import { BsYoutube, BsBell } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../../style/svg/github-mark.svg";
 import { Link } from "react-router-dom";
-import { urlPathProvider } from "../../utils/urlHelper";
-import { clearSearchParams } from "../../store";
-
-type InheritedNavbarProps = {
-  getSearchPageVideos: any;
-  clearVideosData: any;
-  searchParams: string;
-  changeSearchParams: any;
-};
+import NavigationProvider from "../../utils/navigationProvider.component";
 
 /** @namespace Youtube/Component/Navbar/Component */
-export class NavbarComponent extends PureComponent<InheritedNavbarProps> {
+export class NavbarComponent extends PureComponent {
 
   // handleSearch() {
   //   const { getSearchPageVideos, clearVideosData } = this.props;
@@ -40,7 +32,7 @@ export class NavbarComponent extends PureComponent<InheritedNavbarProps> {
 
   render() {
     // const { handleSearch } = this;
-    const { searchParams, changeSearchParams, getSearchPageVideos, clearVideosData } = this.props;
+    // const { searchParams, changeSearchParams, getSearchPageVideos, clearVideosData } = this.props;
 
     return (
       <div className="flex flex-row items-center justify-between h-[56px] px-4
@@ -58,47 +50,13 @@ export class NavbarComponent extends PureComponent<InheritedNavbarProps> {
         </div>
         <div className="flex items-center min-w-0 justify-center gap-5 ml-[25px]">
           <div className="min-w-0">
-            <form
-              onSubmit={(e)=>handleSearch(e)}
-            >
-              <div className="flex bg-yt-spec-base-background items-center
-                              h-10 px-4 pr-0 border border-[#303030] rounded-3xl">
-                <div className="flex gap-4 items-center pr-5">
-                  <div>
-                    <AiOutlineSearch className="text-xl" />
-                  </div>
-                  <input
-                    type="text"
-                    className="bg-yt-spec-base-background w-full
-                               focus:outline-none border-none"
-                    placeholder="Search"
-                    value={searchParams}
-                    onChange={(e) => changeSearchParams(e.target.value)}
-                  />
-
-              <AiOutlineClose
-                className={`text-xl cursor-pointer ${
-                  !searchParams ? "invisible" : "visible"
-                }`}
-                onClick={() => clearSearchParams()}
-              />
-                </div>
-                <button
-                  className="h-10 w-[64px] flex items-center justify-center
-                             bg-zinc-800 border border-[#303030]"
-                  style={{ borderRadius: "0 25px 25px 0" }}
-                  type="submit"
-                >
-                  <AiOutlineSearch className="text-xl" />
-                </button>
-              </div>
-            </form>
+            <NavigationProvider />
           </div>
           <div className="text-xl p-3 bg-zinc-900 rounded-full">
             <TiMicrophone />
           </div>
         </div>
-        {/* for smaller devices hidden for now*/}
+        {/* for smaller devices hidden for now and move to form component*/}
         <div className="flex absolute left-0 z-[51] w-screen bg-yt-spec-base-background
                         items-center min-w-0 justify-center gap-5 hidden">
           <div className="text-xl bg-zinc-900 rounded-full min-w-0 pl-3 pr-2">
