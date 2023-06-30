@@ -14,25 +14,13 @@ import { BsYoutube, BsBell } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../../style/svg/github-mark.svg";
 import { Link } from "react-router-dom";
-import NavigationProvider from "../../utils/navigationProvider.component";
+import { NavigationProvider } from "../../utils/navigationProvider";
+import FormContainer from "../Form/Form.container";
 
 /** @namespace Youtube/Component/Navbar/Component */
 export class NavbarComponent extends PureComponent {
 
-  // handleSearch() {
-  //   const { getSearchPageVideos, clearVideosData } = this.props;
-
-  //   if (!urlPathProvider("/search")) {
-  //     <Navigate to={"/search"} />
-  //   } else {
-  //     getSearchPageVideos(false);
-  //     clearVideosData();
-  //   }
-  // }
-
   render() {
-    // const { handleSearch } = this;
-    // const { searchParams, changeSearchParams, getSearchPageVideos, clearVideosData } = this.props;
 
     return (
       <div className="flex flex-row items-center justify-between h-[56px] px-4
@@ -50,7 +38,7 @@ export class NavbarComponent extends PureComponent {
         </div>
         <div className="flex items-center min-w-0 justify-center gap-5 ml-[25px]">
           <div className="min-w-0">
-            <NavigationProvider />
+            <NavigationProvider Component={FormContainer} />
           </div>
           <div className="text-xl p-3 bg-zinc-900 rounded-full">
             <TiMicrophone />
