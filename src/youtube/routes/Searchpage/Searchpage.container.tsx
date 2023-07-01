@@ -39,10 +39,18 @@ class SearchpageContainer extends PureComponent<Props> {
 
   componentDidMount() {
     const {
-      clearVideosData
+      searchTerm,
+      clearVideosData,
+      navigation,
+      getSearchPageVideos
     } = this.props;
 
     clearVideosData();
+    
+    if (searchTerm === '') navigation('/')
+    else {
+      getSearchPageVideos(false)
+    } 
   }
 
   containerProps() {

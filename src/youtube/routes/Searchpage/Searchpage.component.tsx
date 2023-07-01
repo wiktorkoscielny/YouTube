@@ -11,29 +11,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { HomePageVideos } from "../../store/types";
 import { Props as InheritedProps } from "./Searchpage.container";
 import { InheritedProps as PassedProps } from "./Searchpage.container";
-
-// type InheritedProps = {
-//  videos: any;
-//  searchTerm: any;
-//  getSearchPageVideos: any;
-// }
+import CardContainer from "../../components/Card/Card.container";
 
 /** @namespace Youtube/Component/Searchpage/Component */
 export class SearchpageComponent extends PureComponent<InheritedProps & PassedProps> {
-  // const navigate = useNavigate();
-  // const dispatch = useAppDispatch();
-  // const videos = useAppSelector((state) => state.youtubeApp.videos);
-  // const searchTerm = useAppSelector((state) => state.youtubeApp.searchTerm);
-
-  // useEffect(() => {
-  //   dispatch(clearVideos());
-  //   if (searchTerm === "") navigate("/");
-  //   else {
-  //     dispatch(getSearchPageVideos(false));
-  //   }
-  // }, [dispatch, navigate, searchTerm]);
 
   render() {
+    const { videos, getSearchPageVideos } = this.props;
+
     return (
       <div className="max-h-screen overflow-hidden">
         <div style={{ height: "7.5vh" }}>
@@ -41,19 +26,19 @@ export class SearchpageComponent extends PureComponent<InheritedProps & PassedPr
         </div>
         <div className="flex" style={{ height: "92.5vh" }}>
           <SidebarContainer />
-          {/* {videos.length ? (
+          {videos.length ? (
             <div className="py-8 pl-8 flex flex-col gap-5 w-full">
               <InfiniteScroll
                 dataLength={videos.length}
-                next={() => dispatch(getSearchPageVideos(true))}
+                next={() => getSearchPageVideos(true)}
                 hasMore={videos.length < 500}
-                loader={<Spinner />}
+                loader={<LoaderContainer />}
                 height={600}
               >
                 {videos.map((item: HomePageVideos) => {
                   return (
                     <div className="my-5">
-                       <SearchCard data={item} key={item.videoId} />
+                       <CardContainer data={item} key={item.videoId} isSearchPage={true} />
                     </div>
                   );
                 })}
@@ -61,7 +46,7 @@ export class SearchpageComponent extends PureComponent<InheritedProps & PassedPr
             </div>
           ) : (
             <LoaderContainer />
-          )} */}
+          )}
         </div>
       </div>
     );
