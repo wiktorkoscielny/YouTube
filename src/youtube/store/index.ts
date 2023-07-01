@@ -2,7 +2,6 @@ import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
 import { InitialState } from "./types";
 import { getHomePageVideos } from "./reducers/getMainVideos";
 import { getSearchPageVideos } from "./reducers/getSearchPageVideos";
-import { stat } from "fs";
 
 const initialState: InitialState = {
   videos: [],
