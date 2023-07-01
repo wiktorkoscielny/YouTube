@@ -6,42 +6,33 @@
 import { PureComponent } from "react";
 import { connect } from "react-redux";
 import NavbarComponent from "./Navbar.component";
-import { clearVideos, changeSearchParams } from "../../store";
-import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
-
-/** @namespace Component/Navbar/Container/mapStateToProps */
-function mapStateToProps(state: any) {
-  return {};
-}
+import { toggleSidebarState } from "../../store";
+import { Dispatch } from 'redux'
 
 /** @namespace Component/Navbar/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
-  return {};
+function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    toggleSidebarState: () => dispatch(toggleSidebarState())
+  };
 }
 
-export type State = {};
-
-export type Props = ReturnType<typeof mapDispatchToProps> &
-  ReturnType<typeof mapStateToProps>;
+export type Props = ReturnType<typeof mapDispatchToProps>;
 
 /** @namespace Youtube/Component/Navbar/Container */
-class NavbarContainer extends PureComponent<Props, State> {
-  containerFunctions = {};
-
+class NavbarContainer extends PureComponent<Props> {
   containerProps() {
-    const {} = this.props;
+    const { toggleSidebarState } = this.props;
 
-    return {};
+    return { toggleSidebarState };
   }
 
   render() {
     return (
       <NavbarComponent
         {...this.containerProps()}
-        {...this.containerFunctions}
       />
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);
+export default connect(null, mapDispatchToProps)(NavbarContainer);

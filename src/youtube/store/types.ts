@@ -4,6 +4,7 @@ export interface InitialState {
   searchParams: string;
   nextPageToken: string | null;
   recommendedVideos: RecommendedVideos[];
+  isSidebarOpen: boolean;
 }
 
 export interface HomePageVideos {

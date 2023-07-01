@@ -16,17 +16,20 @@ import Logo from "../../style/svg/github-mark.svg";
 import { Link } from "react-router-dom";
 import { NavigationProvider } from "../../utils/navigationProvider";
 import FormContainer from "../Form/Form.container";
+import { Props } from "./Navbar.container";
 
 /** @namespace Youtube/Component/Navbar/Component */
-export class NavbarComponent extends PureComponent {
+export class NavbarComponent extends PureComponent<Props> {
 
   render() {
+    const { toggleSidebarState } = this.props;
 
     return (
       <div className="flex flex-row items-center justify-between h-[56px] px-4
                       items-center bg-yt-spec-base-background opacity-95 sticky top-0 z-50">
         <div className="flex gap-8 items-center text-2xl min-w-[170px]">
-          <div>
+          <div onClick={() => toggleSidebarState()}
+               className="cursor-pointer">
             <GiHamburgerMenu />
           </div>
           <Link to="/">

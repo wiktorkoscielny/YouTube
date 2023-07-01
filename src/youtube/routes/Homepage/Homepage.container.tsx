@@ -5,6 +5,7 @@
 
 import { PureComponent } from "react";
 import { connect } from "react-redux";
+import { Dispatch } from 'redux'
 import HomepageComponent from "./Homepage.component";
 import { getHomePageVideos } from "../../store/reducers/getMainVideos";
 import { clearVideos } from "../../store";
@@ -13,6 +14,7 @@ import { clearVideos } from "../../store";
 function mapStateToProps(state: any) {
   return {
     videos: state.youtubeApp.videos,
+    sidebarState: state.youtubeApp.isSidebarOpen
   };
 }
 
@@ -25,14 +27,11 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-export type State = {};
-
 export type Props = ReturnType<typeof mapDispatchToProps> &
   ReturnType<typeof mapStateToProps>;
 
 /** @namespace Youtube/Component/Homepage/Container */
-class HomepageContainer extends PureComponent<Props, State> {
-  state: State = {};
+class HomepageContainer extends PureComponent<Props> {
 
   componentDidMount() {
     const {
@@ -44,14 +43,13 @@ class HomepageContainer extends PureComponent<Props, State> {
     clearVideosData();
   }
 
-  containerFunctions = {};
-
   containerProps() {
-    const { videos, getHomePageVideos } = this.props;
+    const { videos, getHomePageVideos, sidebarState} = this.props;
 
     return {
       videos,
-      getHomePageVideos
+      getHomePageVideos,
+      sidebarState
     };
   }
 
@@ -59,7 +57,6 @@ class HomepageContainer extends PureComponent<Props, State> {
     return (
       <HomepageComponent
         {...this.containerProps()}
-        {...this.containerFunctions}
       />
     );
   }
