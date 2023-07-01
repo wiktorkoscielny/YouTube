@@ -16,9 +16,11 @@ export class CardComponent extends PureComponent<InheritedCardProps> {
     if (isSearchPage) {
 
       return (
-        <div className="w-full md:min-w-[300px] max-w-[356px] md:max-w-none
+        <div
+          className="w-full md:min-w-[300px] max-w-[356px] md:max-w-none
                         justify-center md:grid md:grid-cols-[auto_40%] lg:grid-cols-[auto_60%]
-                        md:justify-start md:gap-[22px]">
+                        md:justify-start md:gap-[22px]"
+        >
           <div className="relative border-[1px] border-transparent rounded-[12px]">
             <span className="absolute bottom-3 right-3 text-sm bg-gray-900 px-2 py-0.5 z-10">
               {data.videoDuration}
@@ -31,7 +33,7 @@ export class CardComponent extends PureComponent<InheritedCardProps> {
               />
             </Link>
           </div>
-          <div className="flex gap-2 pt-3">
+          <div className="flex gap-2 pt-3 md:pt-0">
             <div className="min-w-fit md:hidden">
               <a href="#">
                 <img
@@ -47,7 +49,13 @@ export class CardComponent extends PureComponent<InheritedCardProps> {
                   {data.videoTitle}
                 </a>
               </h3>
-              <div className="min-w-fit hidden md:block">
+              <div className="md:flex">
+                <span className="after:content-['•'] after:mx-1 hidden md:block">
+                  {data.videoViews} views
+                </span>
+                <span>{data.videoAge}</span>
+              </div>
+              <div className="min-w-fit hidden md:flex md:items-center md:gap-[12px]">
                 <a href="#">
                   <img
                     src={data.channelInfo.image}
@@ -55,19 +63,25 @@ export class CardComponent extends PureComponent<InheritedCardProps> {
                     className="h-9 w-9 rounded-full"
                   />
                 </a>
+                <a href="#" className="hover:text-white hidden md:block">
+                  {data.channelInfo.name}
+                </a>
               </div>
               <div className="text-sm text-gray-400">
                 <div>
-                  <a href="#" className="hover:text-white">
+                  <a href="#" className="hover:text-white md:hidden">
                     {data.channelInfo.name}
                   </a>
                 </div>
-                <div>
+                <div className="md:hidden">
                   <span className="after:content-['•'] after:mx-1">
                     {data.videoViews} views
                   </span>
                   <span>{data.videoAge}</span>
                 </div>
+              </div>
+              <div className="max-w-2xl line-clamp-2 text-sm text-gray-400">
+                <p>{data.videoDescription}</p>
               </div>
             </div>
           </div>
