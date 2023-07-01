@@ -5,8 +5,9 @@
 
 import { PureComponent } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import NavbarComponent from "./Navbar.component";
+import { clearVideos, changeSearchParams } from "../../store";
+import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
 
 /** @namespace Component/Navbar/Container/mapStateToProps */
 function mapStateToProps(state: any) {
@@ -18,12 +19,13 @@ function mapDispatchToProps(dispatch: any) {
   return {};
 }
 
+export type State = {};
+
+export type Props = ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps>;
+
 /** @namespace Youtube/Component/Navbar/Container */
-class NavbarContainer extends PureComponent {
-  static propTypes = {};
-
-  static defaultProps = {};
-
+class NavbarContainer extends PureComponent<Props, State> {
   containerFunctions = {};
 
   containerProps() {
@@ -42,7 +44,4 @@ class NavbarContainer extends PureComponent {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavbarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);

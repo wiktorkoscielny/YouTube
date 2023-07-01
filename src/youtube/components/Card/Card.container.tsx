@@ -19,8 +19,9 @@ function mapDispatchToProps(dispatch: any) {
 }
 
 export type InheritedCardProps = {
-  data?: HomePageVideos;
-  key?: string;
+  data: HomePageVideos;
+  key: string;
+  isSearchPage?: boolean;
 };
 
 type State = {};
@@ -34,11 +35,16 @@ class CardContainer extends PureComponent<Props, State> {
   containerFunctions = {};
 
   containerProps() {
-    const { data, key } = this.props;
+    const {
+      data,
+      key,
+      isSearchPage
+    } = this.props;
 
     return {
       data,
       key,
+      isSearchPage
     };
   }
 
