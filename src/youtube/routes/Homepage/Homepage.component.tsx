@@ -16,12 +16,13 @@ import { MAX_VIDEOS_LENGTH, DELIMITER_SIZE } from "./config";
 type InheritedHomepageProps = {
   videos: HomePageVideos[];
   getHomePageVideos: any;
+  sidebarState: boolean;
 };
 
 /** @namespace Youtube/Component/Homepage/Component */
 export class HomepageComponent extends PureComponent<InheritedHomepageProps> {
   render() {
-    const { videos, getHomePageVideos } = this.props;
+    const { videos, getHomePageVideos, sidebarState } = this.props;
 
     return (
       <div className="max-h-screen overflow-hidden">
@@ -39,7 +40,8 @@ export class HomepageComponent extends PureComponent<InheritedHomepageProps> {
                 loader={<LoaderContainer />}
                 height={getScreenHeight() - DELIMITER_SIZE}
               >
-                <div className="flex justify-start gap-y-14 gap-x-8 flex-wrap p-8">
+                <div className="flex gap-y-14 gap-x-8 flex-wrap p-8"
+                    style={ sidebarState ? { justifyContent:'start'} : { justifyContent: 'center' }}>
                   {videos.map((item: HomePageVideos) => {
                     return <CardContainer data={item} key={item.videoId} />;
                   })}
