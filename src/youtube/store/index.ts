@@ -5,7 +5,7 @@ import { getSearchPageVideos } from "./reducers/getSearchPageVideos";
 
 const initialState: InitialState = {
   videos: [],
-  currentPlayingVideo: null,
+  currentPlaying: null,
   searchParams: "",
   nextPageToken: null,
   recommendedVideos: [],
