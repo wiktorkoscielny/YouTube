@@ -38,7 +38,7 @@ class WatchpageContainer extends PureComponent<InheritedProps> {
   }
 
   render() {
-    return <WatchpageComponent {...this.containerProps()} />;
+    return <WatchpageComponent {...this.containerProps()  } />;
   }
 }
 
