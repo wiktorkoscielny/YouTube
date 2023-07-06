@@ -1,3 +1,6 @@
-# This will be a YouTube app created with React and Typescript, Redux state management and styled with Tailwind.
+# Youtube clone with React HOC, Typescript, Redux and Tailwind,
 
-### This site is under construction.
+### This site is under construction 
+
+![Construction site gif](https://media.giphy.com/media/EIiJp9cQ3GeEU/giphy.gif)
+
