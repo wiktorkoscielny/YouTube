@@ -33,6 +33,7 @@ type State = {};
 type InheritedProps = {
     navigation: any;
     location: any;
+    paramsKey?: string 
 }
 
 type Props = ReturnType<typeof mapDispatchToProps> &

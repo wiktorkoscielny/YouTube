@@ -32,6 +32,7 @@ export type Props = ReturnType<typeof mapDispatchToProps> &
 export type InheritedProps = {
     navigation: any;
     location: any;
+    paramsKey?: string;
 }
 
 /** @namespace Youtube/Component/Searchpage/Container */

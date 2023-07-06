@@ -6,39 +6,95 @@
 import { PureComponent } from "react";
 import { connect } from "react-redux";
 import WatchpageComponent from "./Watchpage.component";
+import { getVideoDetails } from "../../store/reducers/getVideoDetails";
+import { getRecommendedVideos } from "../../store/reducers/getRecommendedVideos";
 
 /** @namespace Component/Watchpage/Container/mapStateToProps */
 function mapStateToProps(state: any) {
-  return {};
+  return {
+    currentPlaying: state.youtubeApp.currentPlaying,
+  };
 }
 
 /** @namespace Component/Watchpage/Container/mapDispatchToProps */
 function mapDispatchToProps(dispatch: any) {
-  return {};
+  return {
+    getVideoDetails: (payload: string) => dispatch(getVideoDetails(payload)),
+    getRecommendedVideos: (payload: string) =>
+      dispatch(getRecommendedVideos(payload)),
+  };
 }
 
-export type InheritedProps = {
-    navigation: any;
-    location: any;
-}
+type InheritedProps = {
+  navigation: any;
+  location: any;
+  paramsKey?: string;
+};
+
+type Props = ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps> &
+  InheritedProps;
+
+type StateTypes = {
+  showMoreStatus: boolean;
+};
 
 /** @namespace Youtube/Component/Watchpage/Container */
-class WatchpageContainer extends PureComponent<InheritedProps> {
+class WatchpageContainer extends PureComponent<Props, StateTypes> {
+  state: StateTypes = { showMoreStatus: false };
 
-  containerProps() {
+  containerFunctions() {
+    return {
+      toggleShowMoreStatus: this.toggleShowMoreStatus.bind(this),
+    };
+  }
+
+  componentDidMount() {
     const {
-        navigation,
-        location
+      paramsKey,
+      getVideoDetails,
+      navigation,
+      currentPlaying,
+      getRecommendedVideos,
     } = this.props;
 
-    return {
-        navigation,
-        location
+    if (paramsKey) {
+      getVideoDetails(paramsKey);
+      this.setState({ showMoreStatus: false });
+    } else {
+      navigation("/");
+    }
+
+    if (currentPlaying && paramsKey) {
+      getRecommendedVideos(paramsKey);
     }
   }
 
+  toggleShowMoreStatus() {
+    const { showMoreStatus } = this.state;
+
+    this.setState({ showMoreStatus: !showMoreStatus });
+  }
+
+  containerProps() {
+    const { currentPlaying, paramsKey } = this.props;
+
+    const { showMoreStatus } = this.state;
+
+    return {
+      currentPlaying,
+      showMoreStatus,
+      paramsKey,
+    };
+  }
+
   render() {
-    return <WatchpageComponent {...this.containerProps()  } />;
+    return (
+      <WatchpageComponent
+        {...this.containerProps()}
+        {...this.containerFunctions()}
+      />
+    );
   }
 }
 

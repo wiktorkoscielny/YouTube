@@ -10,14 +10,24 @@ import { HiScissors } from "react-icons/hi";
 import { MdOutlinePlaylistAdd } from "react-icons/md";
 import { FaShare } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
-import { InheritedProps } from "./Watchpage.container";
+import { CurrentPlaying } from "../../store/types";
+
+type Props = {
+  toggleShowMoreStatus: () => void;
+  currentPlaying: CurrentPlaying;
+  showMoreStatus: boolean;
+  paramsKey: string;
+};
 
 /** @namespace Youtube/Component/Watchpage/Component */
-export class WatchpageComponent extends PureComponent<InheritedProps> {
+export class WatchpageComponent extends PureComponent<Props> {
   render() {
+    const { toggleShowMoreStatus, currentPlaying, showMoreStatus, paramsKey } =
+      this.props;
+
     return (
-        <>
-        {currentPlaying && currentPlaying?.videoId === id && (
+      <>
+        {currentPlaying && currentPlaying?.videoId === paramsKey && (
           <div className="max-h-screen overflow-hidden">
             <div style={{ height: "7.5vh" }}>
               <NavbarContainer />
@@ -29,7 +39,7 @@ export class WatchpageComponent extends PureComponent<InheritedProps> {
                     <iframe
                       width="800"
                       height="502"
-                      src={`https://www.youtube.com/embed/${id}?autoplay=1`}
+                      src={`https://www.youtube.com/embed/${paramsKey}?autoplay=1`}
                       title="YouTube video player"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -84,7 +94,8 @@ export class WatchpageComponent extends PureComponent<InheritedProps> {
                               <strong>{currentPlaying.channelInfo.name}</strong>
                             </h5>
                             <h6 className="text-gray-400 text-xs">
-                              {currentPlaying.channelInfo.subscribers} subscribers
+                              {currentPlaying.channelInfo.subscribers}{" "}
+                              subscribers
                             </h6>
                           </div>
                           <div>
@@ -110,7 +121,7 @@ export class WatchpageComponent extends PureComponent<InheritedProps> {
                         <div>
                           <button
                             className="uppercase text-sm cursor-pointer"
-                            onClick={() => setShowMoreStatus(!showMoreStatus)}
+                            onClick={() => toggleShowMoreStatus()}
                           >
                             Show {showMoreStatus ? "less" : "more"}
                           </button>
