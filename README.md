@@ -1,3 +1,5 @@
-# This will be a YouTube app created with React and Typescript, Redux state management and styled with Tailwind.
+# React Hoc, Typescript, Tailwind, Redux
 
-### This site is under construction.
+### This site is currently under construction 
+
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
