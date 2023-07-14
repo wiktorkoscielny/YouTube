@@ -3,16 +3,18 @@
  * @author    Wiktor Koscielny <wiktorkoscielny@gmail.com>
  */
 
-import { PureComponent } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import WatchpageComponent from "./Watchpage.component";
 import { getVideoDetails } from "../../store/reducers/getVideoDetails";
 import { getRecommendedVideos } from "../../store/reducers/getRecommendedVideos";
+import { CurrentPlaying } from "../../store/types";
 
 /** @namespace Component/Watchpage/Container/mapStateToProps */
 function mapStateToProps(state: any) {
   return {
     currentPlaying: state.youtubeApp.currentPlaying,
+    recommendedVideos: state.youtubeApp.recommendedVideos,
   };
 }
 
@@ -40,7 +42,7 @@ type StateTypes = {
 };
 
 /** @namespace Youtube/Component/Watchpage/Container */
-class WatchpageContainer extends PureComponent<Props, StateTypes> {
+class WatchpageContainer extends React.Component<Props, StateTypes> {
   state: StateTypes = { showMoreStatus: false };
 
   containerFunctions() {
@@ -50,13 +52,7 @@ class WatchpageContainer extends PureComponent<Props, StateTypes> {
   }
 
   componentDidMount() {
-    const {
-      paramsKey,
-      getVideoDetails,
-      navigation,
-      currentPlaying,
-      getRecommendedVideos,
-    } = this.props;
+    const { paramsKey, getVideoDetails, navigation } = this.props;
 
     if (paramsKey) {
       getVideoDetails(paramsKey);
@@ -64,9 +60,17 @@ class WatchpageContainer extends PureComponent<Props, StateTypes> {
     } else {
       navigation("/");
     }
+  }
 
-    if (currentPlaying && paramsKey) {
+  componentDidUpdate(prevProps: Props) {
+    const { getRecommendedVideos, getVideoDetails, paramsKey } = this.props;
+
+    if (prevProps.currentPlaying !== this.props.currentPlaying) {
       getRecommendedVideos(paramsKey);
+    }
+
+    if (prevProps.paramsKey !== this.props.paramsKey) {
+      getVideoDetails(paramsKey);
     }
   }
 
@@ -77,7 +81,12 @@ class WatchpageContainer extends PureComponent<Props, StateTypes> {
   }
 
   containerProps() {
-    const { currentPlaying, paramsKey } = this.props;
+    const {
+      currentPlaying,
+      paramsKey,
+      getRecommendedVideos,
+      recommendedVideos,
+    } = this.props;
 
     const { showMoreStatus } = this.state;
 
@@ -85,6 +94,8 @@ class WatchpageContainer extends PureComponent<Props, StateTypes> {
       currentPlaying,
       showMoreStatus,
       paramsKey,
+      getRecommendedVideos,
+      recommendedVideos,
     };
   }
 

@@ -5,25 +5,33 @@
 
 import { PureComponent } from "react";
 import NavbarContainer from "../../components/Navbar/Navbar.container";
+import WatchcardContainer from "../../components/Watchcard/Watchcard.container";
+import SidebarContainer from "../../components/Sidebar/Sidebar.container";
 import { BiLike, BiDislike } from "react-icons/bi";
 import { HiScissors } from "react-icons/hi";
 import { MdOutlinePlaylistAdd } from "react-icons/md";
 import { FaShare } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
-import { CurrentPlaying } from "../../store/types";
+import { CurrentPlaying, RecommendedVideos } from "../../store/types";
 
 type Props = {
   toggleShowMoreStatus: () => void;
   currentPlaying: CurrentPlaying;
   showMoreStatus: boolean;
   paramsKey: string;
+  recommendedVideos: RecommendedVideos;
 };
 
 /** @namespace Youtube/Component/Watchpage/Component */
 export class WatchpageComponent extends PureComponent<Props> {
   render() {
-    const { toggleShowMoreStatus, currentPlaying, showMoreStatus, paramsKey } =
-      this.props;
+    const {
+      toggleShowMoreStatus,
+      currentPlaying,
+      showMoreStatus,
+      paramsKey,
+      recommendedVideos,
+    } = this.props;
 
     return (
       <>
@@ -33,6 +41,7 @@ export class WatchpageComponent extends PureComponent<Props> {
               <NavbarContainer />
             </div>
             <div className="flex w-full" style={{ height: "92.5vh" }}>
+              <SidebarContainer />
               <div className="flex gap-y-10 gap-x-5 p-7 mx-20 mr-0 w-full overflow-auto">
                 <div style={{ maxWidth: "800px" }}>
                   <div>
@@ -131,10 +140,12 @@ export class WatchpageComponent extends PureComponent<Props> {
                   </div>
                 </div>
                 <div className="mr-24 flex flex-col gap-3">
-                  {/* {getRecommendedVideos.length &&
-                    recommendedVideos.map((item) => {
-                      return <WatchCard data={item} key={item.videoId} />;
-                    })} */}
+                  {Object.values(recommendedVideos)?.length &&
+                    Object.values(recommendedVideos).map((item: RecommendedVideos) => {
+                      return (
+                        <WatchcardContainer data={item} key={item.videoId} />
+                      );
+                    })}
                 </div>
               </div>
             </div>

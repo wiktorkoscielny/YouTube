@@ -50,7 +50,7 @@ export interface RecommendedVideos {
   };
 }
 
-export interface Item {
+export interface ItemTypeA {
   snippet: {
     title: string;
     thumbnails: { medium: { url: string } };
@@ -58,5 +58,24 @@ export interface Item {
     channelTitle: string;
     channelId: string;
   };
-  contentDetails: { upload: { videoId: string } };
+  contentDetails: { upload?: { videoId?: string } };
+}
+
+export interface ItemTypeB {
+  snippet: {
+    title: string;
+    thumbnails: { medium: { url: string } };
+    publishedAt: Date;
+    channelTitle: string;
+    channelId: string;
+  };
+  contentDetails: {
+    playlistItem?: {
+      playlistId?: string;
+      resourceId?: {
+        kind?: string;
+        videoId?: string;
+      };
+    };
+  };
 }

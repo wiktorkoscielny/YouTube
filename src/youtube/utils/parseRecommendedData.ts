@@ -3,20 +3,33 @@ import { timeSinceHelper } from "./timeSinceHelper";
 import { convertVideoDataToString } from "./convertVideoDataToString";
 import { parseVideoDuration } from "./parseVideoDuration";
 import { YOUTUBE_API_URL } from "./constants";
-import { Item, RecommendedVideos } from "../store/types";
+import { ItemTypeA, ItemTypeB, RecommendedVideos } from "../store/types";
 
 const API_KEY = process.env.REACT_APP_YT_DATA_API_KEY;
 
-export const parseRecommendedData = async (items: Item[], videoId: string) => {
+export const parseRecommendedData = async (
+  items: ItemTypeA[] | ItemTypeB[],
+  videoId: string
+) => {
   try {
     const videoIds: string[] = [];
     const channelIds: string[] = [];
-    const newItems: Item[] = [];
-    items.forEach((item: Item) => {
+    const newItems: ItemTypeA[] | ItemTypeB[] = [];
+
+    items.forEach((item) => {
       channelIds.push(item.snippet.channelId);
-      if (item.contentDetails?.upload?.videoId) {
-        videoIds.push(item.contentDetails.upload.videoId);
-        newItems.push(item);
+      if ((item as ItemTypeA).contentDetails?.upload?.videoId) {
+        videoIds.push((item as ItemTypeA).contentDetails.upload.videoId);
+        newItems.push(item as ItemTypeA);
+      }
+
+      if (
+        (item as ItemTypeB).contentDetails?.playlistItem?.resourceId?.videoId
+      ) {
+        videoIds.push(
+          (item as ItemTypeB).contentDetails.playlistItem.resourceId.videoId
+        );
+        newItems.push(item as ItemTypeB);
       }
     });
 
@@ -29,26 +42,58 @@ export const parseRecommendedData = async (items: Item[], videoId: string) => {
     );
 
     const parsedData: RecommendedVideos[] = [];
-    newItems.forEach((item, index) => {
-      if (index >= videosData.length) return;
-      if (videoId === item?.contentDetails?.upload?.videoId) return;
-      parsedData.push({
-        videoId: item.contentDetails.upload.videoId,
-        videoTitle: item.snippet.title,
-        videoThumbnail: item.snippet.thumbnails.medium.url,
-        videoDuration: parseVideoDuration(
-          videosData[index].contentDetails.duration
-        ),
-        videoViews: convertVideoDataToString(
-          videosData[index].statistics.viewCount
-        ),
-        videoAge: timeSinceHelper(new Date(item.snippet.publishedAt)),
-        channelInfo: {
-          id: item.snippet.channelId,
-          name: item.snippet.channelTitle,
-        },
+
+    if ((newItems[0] as ItemTypeA).contentDetails?.upload) {
+      newItems.forEach((item, index) => {
+        if (videoId === (item as ItemTypeA)?.contentDetails?.upload?.videoId)
+          return;
+
+        parsedData.push({
+          videoId: (item as ItemTypeA).contentDetails?.upload?.videoId,
+          videoTitle: item.snippet.title,
+          videoThumbnail: item.snippet.thumbnails.medium.url,
+          videoDuration: parseVideoDuration(
+            videosData[index].contentDetails.duration
+          ),
+          videoViews: convertVideoDataToString(
+            videosData[index].statistics.viewCount
+          ),
+          videoAge: timeSinceHelper(new Date(item.snippet.publishedAt)),
+          channelInfo: {
+            id: item.snippet.channelId,
+            name: item.snippet.channelTitle,
+          },
+        });
       });
-    });
+    }
+    
+    if (
+      (newItems[0] as ItemTypeB).contentDetails?.playlistItem
+    ) {
+      newItems.forEach((item, index) => {
+        if (
+          videoId === (item as ItemTypeB)?.contentDetails?.playlistItem?.resourceId?.videoId
+        ) return;
+
+        parsedData.push({
+          videoId: (item as ItemTypeB).contentDetails.playlistItem.resourceId
+            .videoId,
+          videoTitle: item.snippet.title,
+          videoThumbnail: item.snippet.thumbnails.medium.url,
+          videoDuration: parseVideoDuration(
+            videosData[index].contentDetails.duration
+          ),
+          videoViews: convertVideoDataToString(
+            videosData[index].statistics.viewCount
+          ),
+          videoAge: timeSinceHelper(new Date(item.snippet.publishedAt)),
+          channelInfo: {
+            id: item.snippet.channelId,
+            name: item.snippet.channelTitle,
+          },
+        });
+      });
+    }
 
     return parsedData;
   } catch (err) {
