@@ -1,9 +1,10 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ComponentType } from "react";
 
 type PassedProps = {
   location: any;
   navigation: any;
+  paramsKey: string;
 };
 
 type ComponentProps = {
@@ -13,6 +14,7 @@ type ComponentProps = {
 export const NavigationProvider = ({ Component }: ComponentProps) => {
   const navigation = useNavigate();
   const location = useLocation();
+  const { id } = useParams();
 
-  return <Component location={location} navigation={navigation} />;
+  return <Component location={location} navigation={navigation} paramsKey={id} />;
 };

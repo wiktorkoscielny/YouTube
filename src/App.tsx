@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from "./youtube/routes/Homepage/Homepage.container";
 import SearchpageContainer
-from "./youtube/routes/Searchpage/Searchpage.container";
-import Watchpage from "./youtube/routes/Watchpage/Watchpage";
+  from "./youtube/routes/Searchpage/Searchpage.container";
+import WatchpageContainer
+  from "./youtube/routes/Watchpage/Watchpage.container";
 import { NavigationProvider } from "./youtube/utils/navigationProvider";
 
 export default function App() {
@@ -11,7 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/search" element={<NavigationProvider Component={SearchpageContainer} />} />
-        <Route path="/watch/:id" element={<Watchpage />} />
+        <Route path="/watch/:id" element={<NavigationProvider Component={WatchpageContainer} />} />
       </Routes>
     </BrowserRouter>
   ); 

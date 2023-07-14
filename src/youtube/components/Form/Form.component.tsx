@@ -12,6 +12,7 @@ import {
 type InheritedProps = {
   navigation: any;
   location: any;
+  paramsKey?: string;
   searchParams: string;
   getSearchPageVideos: any;
   clearVideosData: any;
