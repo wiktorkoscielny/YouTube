@@ -27,7 +27,7 @@ export const parseRecommendedData = async (
         (item as ItemTypeB).contentDetails?.playlistItem?.resourceId?.videoId
       ) {
         videoIds.push(
-          (item as ItemTypeB).contentDetails.playlistItem.resourceId.videoId
+          (item as ItemTypeB).contentDetails.playlistItem?.resourceId?.videoId
         );
         newItems.push(item as ItemTypeB);
       }
@@ -76,7 +76,7 @@ export const parseRecommendedData = async (
         ) return;
 
         parsedData.push({
-          videoId: (item as ItemTypeB).contentDetails.playlistItem.resourceId
+          videoId: (item as ItemTypeB).contentDetails?.playlistItem?.resourceId
             .videoId,
           videoTitle: item.snippet.title,
           videoThumbnail: item.snippet.thumbnails.medium.url,
