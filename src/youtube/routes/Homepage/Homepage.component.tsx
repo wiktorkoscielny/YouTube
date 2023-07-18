@@ -40,8 +40,7 @@ export class HomepageComponent extends PureComponent<InheritedHomepageProps> {
                 loader={<LoaderContainer />}
                 height={getScreenHeight() - DELIMITER_SIZE}
               >
-                <div className="flex gap-y-14 gap-x-8 flex-wrap p-8"
-                    style={ sidebarState ? { justifyContent:'start'} : { justifyContent: 'center' }}>
+                <div className="flex gap-y-14 gap-x-8 flex-wrap p-8 justify-center">
                   {videos.map((item: HomePageVideos) => {
                     return <CardContainer data={item} key={item.videoId} />;
                   })}
