@@ -11,7 +11,10 @@ import {
   secondaryLinks,
   mainLinks,
 } from "./Sidebar.config";
-import { Props } from "./Sidebar.container";
+
+type Props = {
+  sidebarState: boolean;
+}
 
 /** @namespace Youtube/Component/Sidebar/Component */
 export class SidebarComponent extends PureComponent<Props> {
