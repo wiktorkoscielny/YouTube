@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import WatchpageComponent from "./Watchpage.component";
 import { getVideoDetails } from "../../store/reducers/getVideoDetails";
 import { getRecommendedVideos } from "../../store/reducers/getRecommendedVideos";
-import { CurrentPlaying } from "../../store/types";
 
 /** @namespace Component/Watchpage/Container/mapStateToProps */
 function mapStateToProps(state: any) {

@@ -11,7 +11,10 @@ import {
   secondaryLinks,
   mainLinks,
 } from "./Sidebar.config";
-import { Props } from "./Sidebar.container";
+
+type Props = {
+  sidebarState: boolean;
+}
 
 /** @namespace Youtube/Component/Sidebar/Component */
 export class SidebarComponent extends PureComponent<Props> {
@@ -23,8 +26,8 @@ export class SidebarComponent extends PureComponent<Props> {
         {sidebarState && (
           <div
             className="w-2/12 bg-yt-spec-base-background pr-1 overflow-y-hidden
-          hover:overflow-y-auto pb-8 pt-2 sidebar min-w-[180px]"
-          >
+                       hover:overflow-y-auto pb-8 pt-2 sidebar min-w-[180px]
+                       absolute md:relative z-[1] md:z-[0] h-[calc(100vh-56px)] md:h-auto">
             <ul className="flex flex-col border-b-2 border-gray-700 mx-1 pb-2">
               {mainLinks.map(({ icon, name }) => {
                 return (

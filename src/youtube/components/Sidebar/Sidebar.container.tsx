@@ -22,12 +22,32 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-export type Props = {
+type Props = {
   sidebarState: boolean;
-}
+  toggleSidebarState: () => void;
+} 
 
 /** @namespace Youtube/Component/Sidebar/Container */
 class SidebarContainer extends PureComponent<Props> {
+
+  handleResize = () => {
+    const {sidebarState, toggleSidebarState } = this.props;
+    if (window.innerWidth < 768 && sidebarState) {
+      toggleSidebarState();
+    };
+  };
+
+  componentDidMount(): void {
+    const { handleResize } = this;
+
+    window.addEventListener('resize', handleResize);
+  }
+
+  componentWillUnmount(): void {
+    const { handleResize } = this;
+
+    window.removeEventListener('resize', handleResize)
+  }
 
   containerProps() {
     const {
