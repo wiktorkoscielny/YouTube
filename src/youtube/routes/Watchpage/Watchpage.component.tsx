@@ -42,11 +42,12 @@ export class WatchpageComponent extends PureComponent<Props> {
             </div>
             <div className="flex w-full" style={{ height: "92.5vh" }}>
               <SidebarContainer />
-              <div className="flex gap-y-10 gap-x-5 p-7 mx-20 mr-0 w-full overflow-auto">
+              <div className="flex gap-y-10 gap-x-5 p-7 mx-20 mr-0 ml-0 w-full overflow-auto
+                              grid grid-rows lg:grid-cols-[60%_auto]">
                 <div style={{ maxWidth: "800px" }}>
                   <div>
                     <iframe
-                      width="800"
+                      width="100%"
                       height="502"
                       src={`https://www.youtube.com/embed/${paramsKey}?autoplay=1`}
                       title="YouTube video player"
@@ -56,14 +57,14 @@ export class WatchpageComponent extends PureComponent<Props> {
                     ></iframe>
                     <div className="mt-5">
                       <p className="text-xl">{currentPlaying.videoTitle}</p>
-                      <div className="flex justify-between mt-1">
+                      <div className="flex flex-col md:flex-row gap-[10px] md:gap-0 justify-between mt-1">
                         <div className="text-sm text-gray-400">
                           <span className="after:content-['•'] after:mx-1">
                             {currentPlaying.videoViews} views
                           </span>
                           <span> {currentPlaying.videoAge} ago</span>
                         </div>
-                        <div className="flex items-center gap-4 uppercase">
+                        <div className="flex items-center gap-4 uppercase" style={{flexFlow: "row wrap"}}>
                           <div className="flex items-center gap-1 cursor-pointer">
                             <BiLike className="text-xl" />
                             <strong>{currentPlaying.videoLikes}</strong>
@@ -139,7 +140,7 @@ export class WatchpageComponent extends PureComponent<Props> {
                     </div>
                   </div>
                 </div>
-                <div className="mr-24 flex flex-col gap-3">
+                <div className="flex flex-col gap-3 mr-0">
                   {Object.values(recommendedVideos)?.length &&
                     Object.values(recommendedVideos).map((item: RecommendedVideos) => {
                       return (
