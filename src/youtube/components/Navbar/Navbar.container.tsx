@@ -7,7 +7,16 @@ import { PureComponent } from "react";
 import { connect } from "react-redux";
 import NavbarComponent from "./Navbar.component";
 import { toggleSidebarState } from "../../store";
-import { Dispatch } from 'redux'
+import { Dispatch } from 'redux';
+
+/** @namespace Component/Navbar/Container/mapStateToProps */
+function mapStateToProps(state: any) {
+  const { youtubeApp } = state;
+
+  return {
+    isMobile: youtubeApp.isMobile
+  };
+}
 
 /** @namespace Component/Navbar/Container/mapDispatchToProps */
 function mapDispatchToProps(dispatch: Dispatch) {
@@ -16,14 +25,15 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-export type Props = ReturnType<typeof mapDispatchToProps>;
+export type Props = ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps>;
 
 /** @namespace Youtube/Component/Navbar/Container */
 class NavbarContainer extends PureComponent<Props> {
   containerProps() {
-    const { toggleSidebarState } = this.props;
+    const { toggleSidebarState, isMobile } = this.props;
 
-    return { toggleSidebarState };
+    return { toggleSidebarState, isMobile };
   }
 
   render() {
@@ -35,4 +45,4 @@ class NavbarContainer extends PureComponent<Props> {
   }
 }
 
-export default connect(null, mapDispatchToProps)(NavbarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);

@@ -6,35 +6,49 @@
 import { PureComponent } from "react";
 import { connect } from "react-redux";
 import SidebarComponent from "./Sidebar.component";
-import { toggleSidebarState } from "../../store";
+import { toggleSidebarState, toggleDeviceDimension } from "../../store";
+import { MOBILE_BREAKPOINT } from "./Sidebar.config";
+import { Dispatch } from "redux";
 
 /** @namespace Component/Sidebar/Container/mapStateToProps */
 function mapStateToProps(state: any) {
   return {
-    sidebarState: state.youtubeApp.isSidebarOpen
+    sidebarState: state.youtubeApp.isSidebarOpen,
+    isMobile: state.youtubeApp.isMobile
   };
 }
 
 /** @namespace Component/Sidebar/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    toggleSidebarState: () => dispatch(toggleSidebarState())
+    toggleSidebarState: () => dispatch(toggleSidebarState()),
+    toggleDeviceDimension: (payload: boolean) => dispatch(toggleDeviceDimension(payload))
   };
 }
 
 type Props = {
   sidebarState: boolean;
   toggleSidebarState: () => void;
-} 
+  toggleDeviceDimension: (arg: boolean) => void;
+  isMobile: boolean;
+}
 
 /** @namespace Youtube/Component/Sidebar/Container */
 class SidebarContainer extends PureComponent<Props> {
+  state = { isMobile: false };
 
   handleResize = () => {
-    const {sidebarState, toggleSidebarState } = this.props;
-    if (window.innerWidth < 768 && sidebarState) {
+    const {sidebarState, toggleSidebarState, toggleDeviceDimension } = this.props;
+
+    if (window.innerWidth < MOBILE_BREAKPOINT && sidebarState) {
       toggleSidebarState();
     };
+
+    if (window.innerWidth < MOBILE_BREAKPOINT ) {
+      toggleDeviceDimension(true);
+    } else {
+      toggleDeviceDimension(false);
+    }
   };
 
   componentDidMount(): void {
@@ -51,11 +65,13 @@ class SidebarContainer extends PureComponent<Props> {
 
   containerProps() {
     const {
-      sidebarState
+      sidebarState,
+      isMobile
     } = this.props;
 
     return {
-      sidebarState
+      sidebarState,
+      isMobile
     };
   }
 
