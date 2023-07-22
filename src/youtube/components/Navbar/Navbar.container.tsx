@@ -25,21 +25,41 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
+type State = {
+  isSearchBarOpen: boolean;
+};
+
 export type Props = ReturnType<typeof mapDispatchToProps> &
   ReturnType<typeof mapStateToProps>;
 
 /** @namespace Youtube/Component/Navbar/Container */
-class NavbarContainer extends PureComponent<Props> {
+class NavbarContainer extends PureComponent<Props, State> {
+  state = { isSearchBarOpen: false };
+
+  openSearchBar(): void {
+    const { isSearchBarOpen } = this.state;
+
+    this.setState({ isSearchBarOpen: !isSearchBarOpen });
+  }
+
+  containerFunctions() {
+    return {
+      openSearchBar: this.openSearchBar.bind(this)
+    };
+  }
+
   containerProps() {
     const { toggleSidebarState, isMobile } = this.props;
+    const { isSearchBarOpen } = this.state;
 
-    return { toggleSidebarState, isMobile };
+    return { toggleSidebarState, isMobile, isSearchBarOpen };
   }
 
   render() {
     return (
       <NavbarComponent
         {...this.containerProps()}
+        {...this.containerFunctions()}
       />
     );
   }
