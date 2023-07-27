@@ -9,15 +9,18 @@ import SidebarContainer from "../../components/Sidebar/Sidebar.container";
 import LoaderContainer from "../../components/Loader/Loader.container";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { HomePageVideos } from "../../store/types";
-import { Props as InheritedProps } from "./Searchpage.container";
-import { InheritedProps as PassedProps } from "./Searchpage.container";
+import {
+  Props as InheritedProps,
+  InheritedProps as PassedProps,
+  State as StateProps
+} from "./Searchpage.container";
 import CardContainer from "../../components/Card/Card.container";
 
 /** @namespace Youtube/Component/Searchpage/Component */
-export class SearchpageComponent extends PureComponent<InheritedProps & PassedProps> {
+export class SearchpageComponent extends PureComponent<InheritedProps & PassedProps & StateProps> {
 
   render() {
-    const { videos, getSearchPageVideos } = this.props;
+    const { videos, getSearchPageVideos, containerSize } = this.props;
 
     return (
       <div className="max-h-screen overflow-hidden">
@@ -27,13 +30,14 @@ export class SearchpageComponent extends PureComponent<InheritedProps & PassedPr
         <div className="flex" style={{ height: "92.5vh" }}>
           <SidebarContainer />
           {videos.length ? (
-            <div className="py-8 pl-8 flex flex-col gap-5 w-full">
+            <div id="searchContainer"
+                 className="py-8 pl-8 flex flex-col gap-5 w-full">
               <InfiniteScroll
                 dataLength={videos.length}
                 next={() => getSearchPageVideos(true)}
                 hasMore={videos.length < 500}
                 loader={<LoaderContainer />}
-                height={600}
+                height={containerSize}
               >
                 {videos.map((item: HomePageVideos) => {
                   return (

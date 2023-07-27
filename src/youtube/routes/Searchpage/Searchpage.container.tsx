@@ -35,8 +35,13 @@ export type InheritedProps = {
     paramsKey?: string;
 }
 
+export type State = {
+  containerSize: number;
+};
+
 /** @namespace Youtube/Component/Searchpage/Container */
 class SearchpageContainer extends PureComponent<Props> {
+  state: State = { containerSize: 0 };
 
   componentDidMount() {
     const {
@@ -46,12 +51,33 @@ class SearchpageContainer extends PureComponent<Props> {
       getSearchPageVideos
     } = this.props;
 
+    const { calculateAvaliableSpace } = this;
+
     clearVideosData();
     
     if (searchTerm === '') navigation('/')
     else {
       getSearchPageVideos(false)
     } 
+
+    calculateAvaliableSpace();
+
+    window.addEventListener('resize', calculateAvaliableSpace);
+  }
+
+  componentWillUnmount(): void {
+    const { calculateAvaliableSpace } = this;
+
+    window.removeEventListener('resize', calculateAvaliableSpace)
+  }
+
+  calculateAvaliableSpace = () => {
+    const { containerSize } = this.state;
+    const containerHeight = document.getElementById('searchContainer').offsetHeight;
+
+    if (containerSize !== containerHeight) {
+      this.setState({ containerSize: containerHeight });
+    }
   }
 
   containerProps() {
@@ -64,13 +90,18 @@ class SearchpageContainer extends PureComponent<Props> {
       location
     } = this.props;
 
+    const {
+      containerSize
+    } = this.state;
+
     return {
       videos,
       searchTerm,
       getSearchPageVideos,
       clearVideosData,
       navigation,
-      location
+      location,
+      containerSize
     }
   }
 

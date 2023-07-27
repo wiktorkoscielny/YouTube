@@ -7,7 +7,16 @@ import { PureComponent } from "react";
 import { connect } from "react-redux";
 import NavbarComponent from "./Navbar.component";
 import { toggleSidebarState } from "../../store";
-import { Dispatch } from 'redux'
+import { Dispatch } from 'redux';
+
+/** @namespace Component/Navbar/Container/mapStateToProps */
+function mapStateToProps(state: any) {
+  const { youtubeApp } = state;
+
+  return {
+    isMobile: youtubeApp.isMobile
+  };
+}
 
 /** @namespace Component/Navbar/Container/mapDispatchToProps */
 function mapDispatchToProps(dispatch: Dispatch) {
@@ -16,23 +25,40 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-export type Props = ReturnType<typeof mapDispatchToProps>;
+export type Props = ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps>;
 
 /** @namespace Youtube/Component/Navbar/Container */
 class NavbarContainer extends PureComponent<Props> {
-  containerProps() {
-    const { toggleSidebarState } = this.props;
+  state = { isSearchBarOpen: false };
 
-    return { toggleSidebarState };
+  openSearchBar(): void {
+    const { isSearchBarOpen } = this.state;
+
+    this.setState({ isSearchBarOpen: !isSearchBarOpen });
+  }
+
+  containerFunctions() {
+    return {
+      openSearchBar: this.openSearchBar.bind(this)
+    };
+  }
+
+  containerProps() {
+    const { toggleSidebarState, isMobile } = this.props;
+    const { isSearchBarOpen } = this.state;
+
+    return { toggleSidebarState, isMobile, isSearchBarOpen };
   }
 
   render() {
     return (
       <NavbarComponent
         {...this.containerProps()}
+        {...this.containerFunctions()}
       />
     );
   }
 }
 
-export default connect(null, mapDispatchToProps)(NavbarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);

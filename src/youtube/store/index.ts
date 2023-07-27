@@ -11,7 +11,8 @@ const initialState: InitialState = {
   searchParams: "",
   nextPageToken: null,
   recommendedVideos: [],
-  isSidebarOpen: true
+  isSidebarOpen: true,
+  isMobile: false
 };
 
 const YouTubeSlice = createSlice({
@@ -30,6 +31,9 @@ const YouTubeSlice = createSlice({
     },
     toggleSidebarState: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen
+    },
+    toggleDeviceDimension: (state, action:PayloadAction<boolean>) => {
+      state.isMobile = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -56,6 +60,13 @@ export const store = configureStore({
   },
 });
 
-export const { clearVideos, changeSearchParams, clearSearchParams, toggleSidebarState } = YouTubeSlice.actions;
+export const {
+  clearVideos,
+  changeSearchParams,
+  clearSearchParams,
+  toggleSidebarState,
+  toggleDeviceDimension
+} = YouTubeSlice.actions;
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

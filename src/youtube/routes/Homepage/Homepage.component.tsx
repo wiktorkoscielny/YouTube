@@ -26,7 +26,7 @@ export class HomepageComponent extends PureComponent<InheritedHomepageProps> {
 
     return (
       <div className="max-h-screen overflow-hidden">
-        <div style={{ height: "7.5vh" }}>
+        <div style={{ height: "5.5vh" }}>
           <NavbarContainer />
         </div>
         <div className="flex" style={{ height: "92.5vh" }}>
