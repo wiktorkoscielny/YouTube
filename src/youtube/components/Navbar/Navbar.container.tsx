@@ -25,15 +25,11 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-type State = {
-  isSearchBarOpen: boolean;
-};
-
 export type Props = ReturnType<typeof mapDispatchToProps> &
   ReturnType<typeof mapStateToProps>;
 
 /** @namespace Youtube/Component/Navbar/Container */
-class NavbarContainer extends PureComponent<Props, State> {
+class NavbarContainer extends PureComponent<Props> {
   state = { isSearchBarOpen: false };
 
   openSearchBar(): void {
