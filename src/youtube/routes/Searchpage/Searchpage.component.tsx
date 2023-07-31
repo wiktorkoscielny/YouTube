@@ -11,13 +11,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { HomePageVideos } from "../../store/types";
 import {
   Props as InheritedProps,
-  InheritedProps as PassedProps,
   State as StateProps
 } from "./Searchpage.container";
 import CardContainer from "../../components/Card/Card.container";
 
 /** @namespace Youtube/Component/Searchpage/Component */
-export class SearchpageComponent extends PureComponent<InheritedProps & PassedProps & StateProps> {
+export class SearchpageComponent extends PureComponent<InheritedProps & StateProps> {
 
   render() {
     const { videos, getSearchPageVideos, containerSize } = this.props;

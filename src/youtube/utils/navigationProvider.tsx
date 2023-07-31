@@ -1,14 +1,21 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ComponentType } from "react";
 
-type PassedProps = {
-  location: any;
-  navigation: any;
-  paramsKey: string;
+type locationType = {
+  pathname: string;
+  search: string;
+  hash: string;
+  key: string;
+}
+
+export type navigationProviderType = {
+  location: locationType;
+  navigation: (arg: string) => void;
+  paramsKey?: string;
 };
 
 type ComponentProps = {
-  Component: ComponentType<PassedProps>;
+  Component: ComponentType<navigationProviderType>;
 };
 
 export const NavigationProvider = ({ Component }: ComponentProps) => {

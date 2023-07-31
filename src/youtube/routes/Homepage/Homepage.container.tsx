@@ -7,10 +7,10 @@ import { PureComponent } from "react";
 import { connect } from "react-redux";
 import HomepageComponent from "./Homepage.component";
 import { getHomePageVideos } from "../../store/reducers/getMainVideos";
-import { clearVideos } from "../../store";
+import { AppDispatch, RootState, clearVideos } from "../../store";
 
 /** @namespace Component/Homepage/Container/mapStateToProps */
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
   return {
     videos: state.youtubeApp.videos,
     sidebarState: state.youtubeApp.isSidebarOpen
@@ -18,7 +18,7 @@ function mapStateToProps(state: any) {
 }
 
 /** @namespace Component/Homepage/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
+function mapDispatchToProps(dispatch: AppDispatch) {
   return {
     getHomePageVideos: (payload: boolean) =>
       dispatch(getHomePageVideos(payload)),

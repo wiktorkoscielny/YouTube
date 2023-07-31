@@ -7,21 +7,21 @@ import { PureComponent } from "react";
 import { connect } from "react-redux";
 import NavbarComponent from "./Navbar.component";
 import { toggleSidebarState } from "../../store";
-import { Dispatch } from 'redux';
+import { AppDispatch, RootState } from "../../store";
 
 /** @namespace Component/Navbar/Container/mapStateToProps */
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
   const { youtubeApp } = state;
 
   return {
-    isMobile: youtubeApp.isMobile
+    isMobile: youtubeApp.isMobile,
   };
 }
 
 /** @namespace Component/Navbar/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: Dispatch) {
+function mapDispatchToProps(dispatch: AppDispatch) {
   return {
-    toggleSidebarState: () => dispatch(toggleSidebarState())
+    toggleSidebarState: () => dispatch(toggleSidebarState()),
   };
 }
 
@@ -40,7 +40,7 @@ class NavbarContainer extends PureComponent<Props> {
 
   containerFunctions() {
     return {
-      openSearchBar: this.openSearchBar.bind(this)
+      openSearchBar: this.openSearchBar.bind(this),
     };
   }
 

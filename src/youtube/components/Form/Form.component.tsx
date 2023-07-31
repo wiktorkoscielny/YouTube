@@ -4,10 +4,7 @@
  */
 
 import { PureComponent } from "react";
-import {
-  AiOutlineSearch,
-  AiOutlineClose,
-} from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 
 type InheritedProps = {
   navigation: any;
@@ -31,7 +28,7 @@ export class FormComponent extends PureComponent<InheritedProps> {
       clearVideosData();
       getSearchPageVideos(false);
     }
-  }
+  };
 
   render() {
     const { handleSearch } = this;

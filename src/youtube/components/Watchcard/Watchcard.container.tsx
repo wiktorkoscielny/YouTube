@@ -4,19 +4,8 @@
  */
 
 import { PureComponent } from "react";
-import { connect } from "react-redux";
 import WatchcardComponent from "./Watchcard.component";
 import { RecommendedVideos } from "../../store/types";
-
-/** @namespace Component/Watchcard/Container/mapStateToProps */
-function mapStateToProps(state: any) {
-  return {};
-}
-
-/** @namespace Component/Watchcard/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
-  return {};
-}
 
 export type Props = {
     data: RecommendedVideos
@@ -38,4 +27,4 @@ class WatchcardContainer extends PureComponent<Props> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WatchcardContainer);
+export default WatchcardContainer;

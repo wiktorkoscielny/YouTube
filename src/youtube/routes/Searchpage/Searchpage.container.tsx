@@ -8,17 +8,19 @@ import { connect } from "react-redux";
 import SearchpageComponent from "./Searchpage.component";
 import { clearVideos } from "../../store";
 import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
+import { navigationProviderType } from "../../utils/navigationProvider";
+import { RootState, AppDispatch } from "../../store";
 
 /** @namespace Component/Searchpage/Container/mapStateToProps */
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
   return {
     videos: state.youtubeApp.videos,
-    searchTerm: state.youtubeApp
+    searchTerm: state.youtubeApp.searchParams
   };
 }
 
 /** @namespace Component/Searchpage/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
+function mapDispatchToProps(dispatch: AppDispatch) {
   return {
     clearVideosData: () => dispatch(clearVideos()),
     getSearchPageVideos: (payload: boolean) =>
@@ -27,13 +29,7 @@ function mapDispatchToProps(dispatch: any) {
 }
 
 export type Props = ReturnType<typeof mapDispatchToProps> &
-  ReturnType<typeof mapStateToProps> & InheritedProps;
-
-export type InheritedProps = {
-    navigation: any;
-    location: any;
-    paramsKey?: string;
-}
+  ReturnType<typeof mapStateToProps> & navigationProviderType;
 
 export type State = {
   containerSize: number;
@@ -55,9 +51,10 @@ class SearchpageContainer extends PureComponent<Props> {
 
     clearVideosData();
     
-    if (searchTerm === '') navigation('/')
-    else {
-      getSearchPageVideos(false)
+    if (searchTerm == "") {
+      navigation('/');
+    } else {
+      getSearchPageVideos(false);
     } 
 
     calculateAvaliableSpace();

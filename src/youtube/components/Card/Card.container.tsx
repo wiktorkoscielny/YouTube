@@ -4,47 +4,26 @@
  */
 
 import { PureComponent } from "react";
-import { connect } from "react-redux";
 import CardComponent from "./Card.component";
 import { HomePageVideos } from "../../store/types";
 
-/** @namespace Component/Card/Container/mapStateToProps */
-function mapStateToProps(state: any) {
-  return {};
-}
-
-/** @namespace Component/Card/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
-  return {};
-}
-
-export type InheritedCardProps = {
+export type Props = {
   data: HomePageVideos;
   key: string;
   isSearchPage?: boolean;
 };
 
-type State = {};
-
-type Props = ReturnType<typeof mapDispatchToProps> &
-  ReturnType<typeof mapStateToProps> &
-  InheritedCardProps;
-
 /** @namespace Youtube/Component/Card/Container */
-class CardContainer extends PureComponent<Props, State> {
+class CardContainer extends PureComponent<Props> {
   containerFunctions = {};
 
   containerProps() {
-    const {
-      data,
-      key,
-      isSearchPage
-    } = this.props;
+    const { data, key, isSearchPage } = this.props;
 
     return {
       data,
       key,
-      isSearchPage
+      isSearchPage,
     };
   }
 
@@ -55,4 +34,4 @@ class CardContainer extends PureComponent<Props, State> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardContainer);
+export default CardContainer;
