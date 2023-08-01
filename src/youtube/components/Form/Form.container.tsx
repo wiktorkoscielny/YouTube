@@ -9,8 +9,8 @@ import FormComponent from "./Form.component";
 import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
 import { changeSearchParams, clearVideos } from "../../store";
 import { clearSearchParams } from "../../store";
-import { AppDispatch } from "../../store";
-import { RootState } from "../../store";
+import { AppDispatch, RootState } from "../../store";
+import { navigationProviderType } from "../../utils/NavigationProvider/types";
 
 /** @namespace Component/Form/Container/mapStateToProps */
 function mapStateToProps(state: RootState) {
@@ -30,15 +30,9 @@ function mapDispatchToProps(dispatch: AppDispatch) {
   };
 }
 
-type InheritedProps = {
-  navigation: any;
-  location: any;
-  paramsKey?: string;
-};
-
-type Props = ReturnType<typeof mapDispatchToProps> &
+export type Props = ReturnType<typeof mapDispatchToProps> &
   ReturnType<typeof mapStateToProps> &
-  InheritedProps;
+  navigationProviderType;
 
 /** @namespace Youtube/Component/Form/Container */
 class FormContainer extends PureComponent<Props> {

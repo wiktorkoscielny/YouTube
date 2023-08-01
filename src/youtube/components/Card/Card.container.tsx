@@ -5,13 +5,7 @@
 
 import { PureComponent } from "react";
 import CardComponent from "./Card.component";
-import { HomePageVideos } from "../../store/types";
-
-export type Props = {
-  data: HomePageVideos;
-  key: string;
-  isSearchPage?: boolean;
-};
+import { Props } from "./types";
 
 /** @namespace Youtube/Component/Card/Container */
 class CardContainer extends PureComponent<Props> {

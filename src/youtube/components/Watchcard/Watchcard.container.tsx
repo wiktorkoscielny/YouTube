@@ -5,15 +5,10 @@
 
 import { PureComponent } from "react";
 import WatchcardComponent from "./Watchcard.component";
-import { RecommendedVideos } from "../../store/types";
-
-export type Props = {
-    data: RecommendedVideos
-};
+import { Props } from "./types";
 
 /** @namespace Youtube/Component/Watchcard/Container */
 class WatchcardContainer extends PureComponent<Props> {
-
   containerProps() {
     const { data } = this.props;
 
@@ -21,9 +16,7 @@ class WatchcardContainer extends PureComponent<Props> {
   }
 
   render() {
-    return (
-      <WatchcardComponent {...this.containerProps()} />
-    );
+    return <WatchcardComponent {...this.containerProps()} />;
   }
 }
 

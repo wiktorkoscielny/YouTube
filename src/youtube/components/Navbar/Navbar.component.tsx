@@ -10,16 +10,12 @@ import { BsYoutube, BsBell } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../../style/svg/github-mark.svg";
 import { Link } from "react-router-dom";
-import { NavigationProvider } from "../../utils/navigationProvider";
+import { NavigationProvider } from "../../utils/NavigationProvider/navigationProvider";
 import FormContainer from "../Form/Form.container";
 import { Props } from "./Navbar.container";
+import { ContainerFunctions } from "./types";
 
-type ContainerProps = {
-  isSearchBarOpen: boolean;
-  openSearchBar: () => void;
-};
-
-type CombinedProps = Props & ContainerProps;
+type CombinedProps = Props & ContainerFunctions;
 
 /** @namespace Youtube/Component/Navbar/Component */
 export class NavbarComponent extends PureComponent<CombinedProps> {

@@ -27,17 +27,11 @@ function mapDispatchToProps(dispatch: AppDispatch) {
   };
 }
 
-type Props = {
-  sidebarState: boolean;
-  toggleSidebarState: () => void;
-  toggleDeviceDimension: (arg: boolean) => void;
-  isMobile: boolean;
-};
+type Props = ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps>;
 
 /** @namespace Youtube/Component/Sidebar/Container */
 class SidebarContainer extends PureComponent<Props> {
-  state = { isMobile: false };
-
   handleResize = () => {
     const { sidebarState, toggleSidebarState, toggleDeviceDimension } =
       this.props;

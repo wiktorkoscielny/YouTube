@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import NavbarComponent from "./Navbar.component";
 import { toggleSidebarState } from "../../store";
 import { AppDispatch, RootState } from "../../store";
+import { ContainerState } from "./types";
 
 /** @namespace Component/Navbar/Container/mapStateToProps */
 function mapStateToProps(state: RootState) {
@@ -26,11 +27,11 @@ function mapDispatchToProps(dispatch: AppDispatch) {
 }
 
 export type Props = ReturnType<typeof mapDispatchToProps> &
-  ReturnType<typeof mapStateToProps>;
+  ReturnType<typeof mapStateToProps> & ContainerState;
 
 /** @namespace Youtube/Component/Navbar/Container */
 class NavbarContainer extends PureComponent<Props> {
-  state = { isSearchBarOpen: false };
+  state: ContainerState = { isSearchBarOpen: false };
 
   openSearchBar(): void {
     const { isSearchBarOpen } = this.state;

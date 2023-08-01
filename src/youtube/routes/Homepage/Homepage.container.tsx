@@ -13,7 +13,7 @@ import { AppDispatch, RootState, clearVideos } from "../../store";
 function mapStateToProps(state: RootState) {
   return {
     videos: state.youtubeApp.videos,
-    sidebarState: state.youtubeApp.isSidebarOpen
+    sidebarState: state.youtubeApp.isSidebarOpen,
   };
 }
 
@@ -22,7 +22,7 @@ function mapDispatchToProps(dispatch: AppDispatch) {
   return {
     getHomePageVideos: (payload: boolean) =>
       dispatch(getHomePageVideos(payload)),
-    clearVideosData: () => dispatch(clearVideos())
+    clearVideosData: () => dispatch(clearVideos()),
   };
 }
 
@@ -31,33 +31,25 @@ export type Props = ReturnType<typeof mapDispatchToProps> &
 
 /** @namespace Youtube/Component/Homepage/Container */
 class HomepageContainer extends PureComponent<Props> {
-
   componentDidMount() {
-    const {
-      getHomePageVideos,
-      clearVideosData
-    } = this.props;
+    const { getHomePageVideos, clearVideosData } = this.props;
 
     getHomePageVideos(false);
     clearVideosData();
   }
 
   containerProps() {
-    const { videos, getHomePageVideos, sidebarState} = this.props;
+    const { videos, getHomePageVideos, sidebarState } = this.props;
 
     return {
       videos,
       getHomePageVideos,
-      sidebarState
+      sidebarState,
     };
   }
 
   render() {
-    return (
-      <HomepageComponent
-        {...this.containerProps()}
-      />
-    );
+    return <HomepageComponent {...this.containerProps()} />;
   }
 }
 

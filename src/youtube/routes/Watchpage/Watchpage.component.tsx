@@ -16,10 +16,10 @@ import { CurrentPlaying, RecommendedVideos } from "../../store/types";
 
 type Props = {
   toggleShowMoreStatus: () => void;
-  currentPlaying: CurrentPlaying;
+  currentPlaying: CurrentPlaying | null;
   showMoreStatus: boolean;
-  paramsKey: string;
-  recommendedVideos: RecommendedVideos;
+  paramsKey?: string;
+  recommendedVideos: RecommendedVideos[];
 };
 
 /** @namespace Youtube/Component/Watchpage/Component */
@@ -42,8 +42,10 @@ export class WatchpageComponent extends PureComponent<Props> {
             </div>
             <div className="flex w-full" style={{ height: "92.5vh" }}>
               <SidebarContainer />
-              <div className="flex gap-y-10 gap-x-5 p-7 mx-20 mr-0 ml-0 w-full overflow-auto
-                              grid grid-rows lg:grid-cols-[60%_auto]">
+              <div
+                className="flex gap-y-10 gap-x-5 p-7 mx-20 mr-0 ml-0 w-full overflow-auto
+                              grid grid-rows lg:grid-cols-[60%_auto]"
+              >
                 <div style={{ maxWidth: "800px" }}>
                   <div>
                     <iframe
@@ -64,7 +66,10 @@ export class WatchpageComponent extends PureComponent<Props> {
                           </span>
                           <span> {currentPlaying.videoAge} ago</span>
                         </div>
-                        <div className="flex items-center gap-4 uppercase" style={{flexFlow: "row wrap"}}>
+                        <div
+                          className="flex items-center gap-4 uppercase"
+                          style={{ flexFlow: "row wrap" }}
+                        >
                           <div className="flex items-center gap-1 cursor-pointer">
                             <BiLike className="text-xl" />
                             <strong>{currentPlaying.videoLikes}</strong>
@@ -142,11 +147,13 @@ export class WatchpageComponent extends PureComponent<Props> {
                 </div>
                 <div className="flex flex-col gap-3 mr-0">
                   {Object.values(recommendedVideos)?.length &&
-                    Object.values(recommendedVideos).map((item: RecommendedVideos) => {
-                      return (
-                        <WatchcardContainer data={item} key={item.videoId} />
-                      );
-                    })}
+                    Object.values(recommendedVideos).map(
+                      (item: RecommendedVideos) => {
+                        return (
+                          <WatchcardContainer data={item} key={item.videoId} />
+                        );
+                      }
+                    )}
                 </div>
               </div>
             </div>

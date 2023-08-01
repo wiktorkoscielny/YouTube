@@ -5,20 +5,10 @@
 
 import { PureComponent } from "react";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-
-type InheritedProps = {
-  navigation: any;
-  location: any;
-  paramsKey?: string;
-  searchParams: string;
-  getSearchPageVideos: any;
-  clearVideosData: any;
-  changeSearchParams: any;
-  clearSearchParams: any;
-};
+import { Props } from "./Form.container";
 
 /** @namespace Youtube/Component/Form/Component */
-export class FormComponent extends PureComponent<InheritedProps> {
+export class FormComponent extends PureComponent<Props> {
   handleSearch = () => {
     const { location, navigation, getSearchPageVideos, clearVideosData } =
       this.props;

@@ -5,7 +5,7 @@
 
 import { PureComponent, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { Props } from "./Card.container";
+import { Props } from "./types";
 
 /** @namespace Youtube/Component/Card/Component */
 export class CardComponent extends PureComponent<Props> {

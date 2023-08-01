@@ -4,7 +4,7 @@ import SearchpageContainer
   from "./youtube/routes/Searchpage/Searchpage.container";
 import WatchpageContainer
   from "./youtube/routes/Watchpage/Watchpage.container";
-import { NavigationProvider } from "./youtube/utils/navigationProvider";
+import { NavigationProvider } from "./youtube/utils/NavigationProvider/navigationProvider";
 
 export default function App() {
   return (
