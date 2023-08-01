@@ -1,5 +1,5 @@
 export type ContainerState = {
-  isSearchBarOpen: boolean;
+  isSearchBarOpen?: boolean;
 };
 
 export type ContainerFunctions = {
