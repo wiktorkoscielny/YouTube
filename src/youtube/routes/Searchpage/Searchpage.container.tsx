@@ -8,32 +8,29 @@ import { connect } from "react-redux";
 import SearchpageComponent from "./Searchpage.component";
 import { clearVideos } from "../../store";
 import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
+import { navigationProviderType } from "../../utils/NavigationProvider/types";
+import { RootState, AppDispatch } from "../../store";
 
 /** @namespace Component/Searchpage/Container/mapStateToProps */
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
   return {
     videos: state.youtubeApp.videos,
-    searchTerm: state.youtubeApp
+    searchTerm: state.youtubeApp.searchParams,
   };
 }
 
 /** @namespace Component/Searchpage/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
+function mapDispatchToProps(dispatch: AppDispatch) {
   return {
     clearVideosData: () => dispatch(clearVideos()),
     getSearchPageVideos: (payload: boolean) =>
-      dispatch(getSearchPageVideos(payload))
+      dispatch(getSearchPageVideos(payload)),
   };
 }
 
 export type Props = ReturnType<typeof mapDispatchToProps> &
-  ReturnType<typeof mapStateToProps> & InheritedProps;
-
-export type InheritedProps = {
-    navigation: any;
-    location: any;
-    paramsKey?: string;
-}
+  ReturnType<typeof mapStateToProps> &
+  navigationProviderType;
 
 export type State = {
   containerSize: number;
@@ -44,41 +41,39 @@ class SearchpageContainer extends PureComponent<Props> {
   state: State = { containerSize: 0 };
 
   componentDidMount() {
-    const {
-      searchTerm,
-      clearVideosData,
-      navigation,
-      getSearchPageVideos
-    } = this.props;
+    const { searchTerm, clearVideosData, navigation, getSearchPageVideos } =
+      this.props;
 
     const { calculateAvaliableSpace } = this;
 
     clearVideosData();
-    
-    if (searchTerm === '') navigation('/')
-    else {
-      getSearchPageVideos(false)
-    } 
+
+    if (searchTerm == "") {
+      navigation("/");
+    } else {
+      getSearchPageVideos(false);
+    }
 
     calculateAvaliableSpace();
 
-    window.addEventListener('resize', calculateAvaliableSpace);
+    window.addEventListener("resize", calculateAvaliableSpace);
   }
 
   componentWillUnmount(): void {
     const { calculateAvaliableSpace } = this;
 
-    window.removeEventListener('resize', calculateAvaliableSpace)
+    window.removeEventListener("resize", calculateAvaliableSpace);
   }
 
   calculateAvaliableSpace = () => {
     const { containerSize } = this.state;
-    const containerHeight = document.getElementById('searchContainer').offsetHeight;
+    const containerHeight =
+      document.getElementById("searchContainer").offsetHeight;
 
     if (containerSize !== containerHeight) {
       this.setState({ containerSize: containerHeight });
     }
-  }
+  };
 
   containerProps() {
     const {
@@ -87,12 +82,10 @@ class SearchpageContainer extends PureComponent<Props> {
       getSearchPageVideos,
       clearVideosData,
       navigation,
-      location
+      location,
     } = this.props;
 
-    const {
-      containerSize
-    } = this.state;
+    const { containerSize } = this.state;
 
     return {
       videos,
@@ -101,13 +94,16 @@ class SearchpageContainer extends PureComponent<Props> {
       clearVideosData,
       navigation,
       location,
-      containerSize
-    }
+      containerSize,
+    };
   }
 
   render() {
-    return  <SearchpageComponent {...this.containerProps()} />
+    return <SearchpageComponent {...this.containerProps()} />;
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchpageContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchpageContainer);

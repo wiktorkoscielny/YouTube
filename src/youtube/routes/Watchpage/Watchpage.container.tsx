@@ -8,9 +8,11 @@ import { connect } from "react-redux";
 import WatchpageComponent from "./Watchpage.component";
 import { getVideoDetails } from "../../store/reducers/getVideoDetails";
 import { getRecommendedVideos } from "../../store/reducers/getRecommendedVideos";
+import { AppDispatch, RootState } from "../../store";
+import { navigationProviderType } from "../../utils/NavigationProvider/types";
 
 /** @namespace Component/Watchpage/Container/mapStateToProps */
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
   return {
     currentPlaying: state.youtubeApp.currentPlaying,
     recommendedVideos: state.youtubeApp.recommendedVideos,
@@ -18,7 +20,7 @@ function mapStateToProps(state: any) {
 }
 
 /** @namespace Component/Watchpage/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
+function mapDispatchToProps(dispatch: AppDispatch) {
   return {
     getVideoDetails: (payload: string) => dispatch(getVideoDetails(payload)),
     getRecommendedVideos: (payload: string) =>
@@ -26,15 +28,9 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-type InheritedProps = {
-  navigation: any;
-  location: any;
-  paramsKey?: string;
-};
-
 type Props = ReturnType<typeof mapDispatchToProps> &
   ReturnType<typeof mapStateToProps> &
-  InheritedProps;
+  navigationProviderType;
 
 type StateTypes = {
   showMoreStatus: boolean;

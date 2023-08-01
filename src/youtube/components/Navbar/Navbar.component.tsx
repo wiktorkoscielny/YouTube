@@ -4,31 +4,24 @@
  */
 
 import { PureComponent } from "react";
-import {
-  AiOutlineSearch,
-  AiOutlineClose,
-  AiOutlineArrowLeft,
-} from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineArrowLeft } from "react-icons/ai";
 import { TiMicrophone } from "react-icons/ti";
 import { BsYoutube, BsBell } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../../style/svg/github-mark.svg";
 import { Link } from "react-router-dom";
-import { NavigationProvider } from "../../utils/navigationProvider";
+import { NavigationProvider } from "../../utils/NavigationProvider/navigationProvider";
 import FormContainer from "../Form/Form.container";
 import { Props } from "./Navbar.container";
+import { ContainerFunctions } from "./types";
 
-type ContainerProps = {
-  isSearchBarOpen: boolean;
-  openSearchBar: () => void;
-};
-
-type CombinedProps = Props & ContainerProps;
+type CombinedProps = Props & ContainerFunctions;
 
 /** @namespace Youtube/Component/Navbar/Component */
 export class NavbarComponent extends PureComponent<CombinedProps> {
   render() {
-    const { toggleSidebarState, openSearchBar, isSearchBarOpen, isMobile } = this.props;
+    const { toggleSidebarState, openSearchBar, isSearchBarOpen, isMobile } =
+      this.props;
 
     return (
       <div
@@ -73,13 +66,13 @@ export class NavbarComponent extends PureComponent<CombinedProps> {
               onClick={() => openSearchBar()}
               className="text-xl bg-zinc-900 rounded-full min-w-0 pl-2 pr-2 pt-2 pb-2"
             >
-              <AiOutlineArrowLeft className="text-xl"/>
+              <AiOutlineArrowLeft className="text-xl" />
             </div>
             <div className="min-w-0">
               <NavigationProvider Component={FormContainer} />
             </div>
             <div className="text-xl bg-zinc-900 rounded-full min-w-[20px] ml-2 mr-3">
-              <TiMicrophone className="text-2xl"/>
+              <TiMicrophone className="text-2xl" />
             </div>
           </div>
         )}

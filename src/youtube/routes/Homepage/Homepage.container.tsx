@@ -7,22 +7,22 @@ import { PureComponent } from "react";
 import { connect } from "react-redux";
 import HomepageComponent from "./Homepage.component";
 import { getHomePageVideos } from "../../store/reducers/getMainVideos";
-import { clearVideos } from "../../store";
+import { AppDispatch, RootState, clearVideos } from "../../store";
 
 /** @namespace Component/Homepage/Container/mapStateToProps */
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
   return {
     videos: state.youtubeApp.videos,
-    sidebarState: state.youtubeApp.isSidebarOpen
+    sidebarState: state.youtubeApp.isSidebarOpen,
   };
 }
 
 /** @namespace Component/Homepage/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
+function mapDispatchToProps(dispatch: AppDispatch) {
   return {
     getHomePageVideos: (payload: boolean) =>
       dispatch(getHomePageVideos(payload)),
-    clearVideosData: () => dispatch(clearVideos())
+    clearVideosData: () => dispatch(clearVideos()),
   };
 }
 
@@ -31,33 +31,25 @@ export type Props = ReturnType<typeof mapDispatchToProps> &
 
 /** @namespace Youtube/Component/Homepage/Container */
 class HomepageContainer extends PureComponent<Props> {
-
   componentDidMount() {
-    const {
-      getHomePageVideos,
-      clearVideosData
-    } = this.props;
+    const { getHomePageVideos, clearVideosData } = this.props;
 
     getHomePageVideos(false);
     clearVideosData();
   }
 
   containerProps() {
-    const { videos, getHomePageVideos, sidebarState} = this.props;
+    const { videos, getHomePageVideos, sidebarState } = this.props;
 
     return {
       videos,
       getHomePageVideos,
-      sidebarState
+      sidebarState,
     };
   }
 
   render() {
-    return (
-      <HomepageComponent
-        {...this.containerProps()}
-      />
-    );
+    return <HomepageComponent {...this.containerProps()} />;
   }
 }
 

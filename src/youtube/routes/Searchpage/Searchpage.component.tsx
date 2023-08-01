@@ -11,14 +11,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { HomePageVideos } from "../../store/types";
 import {
   Props as InheritedProps,
-  InheritedProps as PassedProps,
-  State as StateProps
+  State as StateProps,
 } from "./Searchpage.container";
 import CardContainer from "../../components/Card/Card.container";
 
 /** @namespace Youtube/Component/Searchpage/Component */
-export class SearchpageComponent extends PureComponent<InheritedProps & PassedProps & StateProps> {
-
+export class SearchpageComponent extends PureComponent<
+  InheritedProps & StateProps
+> {
   render() {
     const { videos, getSearchPageVideos, containerSize } = this.props;
 
@@ -30,8 +30,10 @@ export class SearchpageComponent extends PureComponent<InheritedProps & PassedPr
         <div className="flex" style={{ height: "92.5vh" }}>
           <SidebarContainer />
           {videos.length ? (
-            <div id="searchContainer"
-                 className="py-8 pl-8 flex flex-col gap-5 w-full">
+            <div
+              id="searchContainer"
+              className="py-8 pl-8 flex flex-col gap-5 w-full"
+            >
               <InfiniteScroll
                 dataLength={videos.length}
                 next={() => getSearchPageVideos(true)}
@@ -42,7 +44,11 @@ export class SearchpageComponent extends PureComponent<InheritedProps & PassedPr
                 {videos.map((item: HomePageVideos) => {
                   return (
                     <div className="my-5">
-                       <CardContainer data={item} key={item.videoId} isSearchPage={true} />
+                      <CardContainer
+                        data={item}
+                        key={item.videoId}
+                        isSearchPage={true}
+                      />
                     </div>
                   );
                 })}

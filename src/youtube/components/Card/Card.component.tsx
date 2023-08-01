@@ -5,16 +5,14 @@
 
 import { PureComponent, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { InheritedCardProps } from "./Card.container";
+import { Props } from "./types";
 
 /** @namespace Youtube/Component/Card/Component */
-export class CardComponent extends PureComponent<InheritedCardProps> {
-
+export class CardComponent extends PureComponent<Props> {
   returnCardContent = (content: ReactNode) => {
     const { isSearchPage, data } = this.props;
 
     if (isSearchPage) {
-
       return (
         <div
           className="w-full md:min-w-[300px] max-w-[356px] md:max-w-none

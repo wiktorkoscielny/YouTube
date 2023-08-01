@@ -4,27 +4,11 @@
  */
 
 import { PureComponent } from "react";
-import { connect } from "react-redux";
 import WatchcardComponent from "./Watchcard.component";
-import { RecommendedVideos } from "../../store/types";
-
-/** @namespace Component/Watchcard/Container/mapStateToProps */
-function mapStateToProps(state: any) {
-  return {};
-}
-
-/** @namespace Component/Watchcard/Container/mapDispatchToProps */
-function mapDispatchToProps(dispatch: any) {
-  return {};
-}
-
-export type Props = {
-    data: RecommendedVideos
-};
+import { Props } from "./types";
 
 /** @namespace Youtube/Component/Watchcard/Container */
 class WatchcardContainer extends PureComponent<Props> {
-
   containerProps() {
     const { data } = this.props;
 
@@ -32,10 +16,8 @@ class WatchcardContainer extends PureComponent<Props> {
   }
 
   render() {
-    return (
-      <WatchcardComponent {...this.containerProps()} />
-    );
+    return <WatchcardComponent {...this.containerProps()} />;
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WatchcardContainer);
+export default WatchcardContainer;
