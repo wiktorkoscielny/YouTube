@@ -10,7 +10,7 @@ import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
 import { changeSearchParams, clearVideos } from "../../store";
 import { clearSearchParams } from "../../store";
 import { AppDispatch, RootState } from "../../store";
-import { navigationProviderType } from "../../utils/NavigationProvider/types";
+import { navigationProviderType } from "../../helpers/NavigationProvider/types";
 
 /** @namespace Component/Form/Container/mapStateToProps */
 function mapStateToProps(state: RootState) {

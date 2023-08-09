@@ -1,19 +1,28 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Homepage from "./youtube/routes/Homepage/Homepage.container";
-import SearchpageContainer
-  from "./youtube/routes/Searchpage/Searchpage.container";
-import WatchpageContainer
-  from "./youtube/routes/Watchpage/Watchpage.container";
-import { NavigationProvider } from "./youtube/utils/NavigationProvider/navigationProvider";
+import { BrowserRouter, Routes } from "react-router-dom";
+import { routeMapper } from "./youtube/helpers/RouteMapper/routeMapper";
+import { RoutesData } from "./youtube/helpers/RouteMapper/routes";
+import { DataCombinedType } from "./youtube/helpers/RouteMapper/types";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/search" element={<NavigationProvider Component={SearchpageContainer} />} />
-        <Route path="/watch/:id" element={<NavigationProvider Component={WatchpageContainer} />} />
+        {RoutesData.map((item) => {
+          const {
+            path,
+            component,
+            isWithNavigation
+          } = ({} = item);
+          
+          return routeMapper(
+            ({
+              path,
+              component,
+              isWithNavigation
+            }) as DataCombinedType
+          );
+        })}
       </Routes>
     </BrowserRouter>
-  ); 
+  );
 }

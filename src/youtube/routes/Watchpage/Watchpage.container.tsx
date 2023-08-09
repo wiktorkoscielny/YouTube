@@ -9,7 +9,7 @@ import WatchpageComponent from "./Watchpage.component";
 import { getVideoDetails } from "../../store/reducers/getVideoDetails";
 import { getRecommendedVideos } from "../../store/reducers/getRecommendedVideos";
 import { AppDispatch, RootState } from "../../store";
-import { navigationProviderType } from "../../utils/NavigationProvider/types";
+import { navigationProviderType } from "../../helpers/NavigationProvider/types";
 
 /** @namespace Component/Watchpage/Container/mapStateToProps */
 function mapStateToProps(state: RootState) {

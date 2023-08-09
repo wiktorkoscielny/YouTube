@@ -10,7 +10,7 @@ import { BsYoutube, BsBell } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../../style/svg/github-mark.svg";
 import { Link } from "react-router-dom";
-import { NavigationProvider } from "../../utils/NavigationProvider/navigationProvider";
+import { NavigationProvider } from "../../helpers/NavigationProvider/navigationProvider";
 import FormContainer from "../Form/Form.container";
 import { Props } from "./Navbar.container";
 import { ContainerFunctions } from "./types";

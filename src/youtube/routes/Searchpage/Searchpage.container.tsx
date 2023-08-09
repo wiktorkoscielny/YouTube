@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import SearchpageComponent from "./Searchpage.component";
 import { clearVideos } from "../../store";
 import { getSearchPageVideos } from "../../store/reducers/getSearchPageVideos";
-import { navigationProviderType } from "../../utils/NavigationProvider/types";
+import { navigationProviderType } from "../../helpers/NavigationProvider/types";
 import { RootState, AppDispatch } from "../../store";
 
 /** @namespace Component/Searchpage/Container/mapStateToProps */
