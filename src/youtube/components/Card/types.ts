@@ -2,6 +2,6 @@ import { HomePageVideos } from "../../store/types";
 
 export type Props = {
   data: HomePageVideos;
-  key: string;
+  key?: string;
   isSearchPage?: boolean;
 };
