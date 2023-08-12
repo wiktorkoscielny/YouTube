@@ -100,7 +100,7 @@ export class WatchpageComponent extends PureComponent<Props> {
                           <div>
                             <img
                               src={currentPlaying.channelInfo.image}
-                              alt=""
+                              alt="Youtube channel image"
                               className="rounded-full h-12 w-12"
                             />
                           </div>
