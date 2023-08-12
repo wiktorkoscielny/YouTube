@@ -1,3 +1,8 @@
+/*
+ * @category  Youtube
+ * @author    Wiktor Koscielny <wiktorkoscielny@gmail.com>
+ */
+
 import { BrowserRouter, Routes } from "react-router-dom";
 import { routeMapper } from "./youtube/helpers/RouteMapper/routeMapper";
 import { RoutesData } from "./youtube/helpers/RouteMapper/routes";

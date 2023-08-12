@@ -43,9 +43,9 @@ export class CardComponent extends PureComponent<Props> {
             </div>
             <div className="md:flex md:flex-col md:gap-[12px]">
               <h3>
-                <a href="#" className="line-clamp-2">
-                  {data.videoTitle}
-                </a>
+                <Link to={`/watch/${data.videoId}`}>
+                  <span className="line-clamp-2">{data.videoTitle}</span>
+                </Link>
               </h3>
               <div className="md:flex">
                 <span className="after:content-['•'] after:mx-1 hidden md:block">

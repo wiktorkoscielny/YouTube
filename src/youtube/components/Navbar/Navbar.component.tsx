@@ -84,7 +84,7 @@ export class NavbarComponent extends PureComponent<CombinedProps> {
             </span>
           </div>
           <div>
-            <img src={Logo} className="w-9 h-9" />
+            <img src={Logo} className="w-9 h-9" alt="Youtube account image" />
           </div>
         </div>
       </div>

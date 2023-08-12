@@ -12,11 +12,10 @@ class CardContainer extends PureComponent<Props> {
   containerFunctions = {};
 
   containerProps() {
-    const { data, key, isSearchPage } = this.props;
+    const { data, isSearchPage } = this.props;
 
     return {
       data,
-      key,
       isSearchPage,
     };
   }
