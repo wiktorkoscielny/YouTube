@@ -12,27 +12,31 @@ import { HomePageVideos } from "../../store/types";
 import LoaderContainer from "../../components/Loader/Loader.container";
 import { getScreenHeight } from "../../utils/screenDimension";
 import { MAX_VIDEOS_LENGTH, DELIMITER_SIZE } from "./config";
-
-type InheritedHomepageProps = {
-  videos: HomePageVideos[];
-  getHomePageVideos: any;
-  sidebarState: boolean;
-};
+import { InheritedHomepageProps } from "./types";
 
 /** @namespace Youtube/Component/Homepage/Component */
 export class HomepageComponent extends PureComponent<InheritedHomepageProps> {
+  renderLoaderWrapper() {
+    return (
+      <div className="h-full flex">
+        <LoaderContainer />
+      </div>
+    );
+  };
+
   render() {
-    const { videos, getHomePageVideos, sidebarState } = this.props;
+    const { videos, getHomePageVideos } = this.props;
+    const { renderLoaderWrapper } = this;
 
     return (
       <div className="max-h-screen overflow-hidden">
-        <div style={{ height: "5.5vh" }}>
+        <div style={{ height: "7.5vh" }}>
           <NavbarContainer />
         </div>
         <div className="flex" style={{ height: "92.5vh" }}>
           <SidebarContainer />
           <div className="w-full bg-yt-spec-base-background">
-            {videos.length && (
+            {videos.length > 0 ? (
               <InfiniteScroll
                 dataLength={videos.length}
                 next={() => getHomePageVideos(true)}
@@ -46,7 +50,7 @@ export class HomepageComponent extends PureComponent<InheritedHomepageProps> {
                   })}
                 </div>
               </InfiniteScroll>
-            )}
+            ) : renderLoaderWrapper() }
           </div>
         </div>
       </div>
