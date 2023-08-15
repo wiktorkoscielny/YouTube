@@ -1,0 +1,40 @@
+.placeholder-background {
+  position: absolute;
+  left: -45%;
+  height: 100%;
+  width: 45%;
+  background-image: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.00125),
+    rgba(255, 255, 255, 0.075),
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.075),
+    rgba(255, 255, 255, 0.00125)
+  );
+  background-image: -moz-linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.00125),
+    rgba(255, 255, 255, 0.075),
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.075),
+    rgba(255, 255, 255, 0.00125)
+  );
+  background-image: -webkit-linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.00125),
+    rgba(255, 255, 255, 0.075),
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.075),
+    rgba(255, 255, 255, 0.00125)
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -45%;
+  }
+  100% {
+    left: 100%;
+  }
+}
