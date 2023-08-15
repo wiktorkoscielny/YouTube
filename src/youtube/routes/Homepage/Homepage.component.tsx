@@ -11,15 +11,16 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { HomePageVideos } from "../../store/types";
 import LoaderContainer from "../../components/Loader/Loader.container";
 import { getScreenHeight } from "../../utils/screenDimension";
-import { MAX_VIDEOS_LENGTH, DELIMITER_SIZE } from "./config";
+import { MAX_VIDEOS_LENGTH, DELIMITER_SIZE, PLACEHOLDERS_MULTIPLER } from "./config";
 import { InheritedHomepageProps } from "./types";
+import PlaceholderContainer from "../../components/Placeholder/Placeholder.container";
 
 /** @namespace Youtube/Component/Homepage/Component */
 export class HomepageComponent extends PureComponent<InheritedHomepageProps> {
   renderLoaderWrapper() {
     return (
-      <div className="h-full flex">
-        <LoaderContainer />
+      <div className="flex gap-y-14 gap-x-8 flex-wrap p-8 justify-center">
+        {[...Array(PLACEHOLDERS_MULTIPLER)].map((e, i) => <PlaceholderContainer key={i} />)}
       </div>
     );
   };
