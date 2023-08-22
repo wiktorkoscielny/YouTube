@@ -5,7 +5,7 @@ import { YOUTUBE_API_URL } from "../../utils/constants";
 import { parseData } from "../../utils/parseData";
 import { HomePageVideos } from "../types";
 
-const API_KEY = process.env.YT_ENCODED;
+const API_KEY = process.env.REACT_APP_YT_ENCODED;
 
 export const getHomePageVideos = createAsyncThunk(
   "youtubeApp/mainVideos",

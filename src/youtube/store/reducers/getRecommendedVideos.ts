@@ -5,7 +5,7 @@ import { parseRecommendedData } from "../../utils/parseRecommendedData";
 import { RecommendedVideos } from "../types";
 import { YOUTUBE_API_URL } from "../../utils/constants";
 
-const API_KEY = process.env.YT_ENCODED;
+const API_KEY = process.env.REACT_APP_YT_ENCODED;
 
 export const getRecommendedVideos = createAsyncThunk(
   "yotubeApp/getRecommendedVideos",
