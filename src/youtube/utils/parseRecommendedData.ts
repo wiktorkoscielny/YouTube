@@ -5,7 +5,7 @@ import { parseVideoDuration } from "./parseVideoDuration";
 import { YOUTUBE_API_URL } from "./constants";
 import { ItemTypeA, ItemTypeB, RecommendedVideos } from "../store/types";
 
-const API_KEY = process.env.REACT_APP_YT_DATA_API_KEY;
+const API_KEY = process.env.YT_ENCODED;
 
 export const parseRecommendedData = async (
   items: ItemTypeA[] | ItemTypeB[],
