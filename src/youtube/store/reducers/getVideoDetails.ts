@@ -4,7 +4,7 @@ import { timeSinceHelper } from "../../utils/timeSinceHelper";
 import { convertVideoDataToString } from "../../utils/convertVideoDataToString";
 import { YOUTUBE_API_URL } from "../../utils/constants";
 
-const API_KEY = process.env.REACT_APP_YT_DATA_API_KEYV2;
+const API_KEY = process.env.YT_ENCODED;
 
 export const getVideoDetails = createAsyncThunk(
   "yotubeApp/videoDetails",
