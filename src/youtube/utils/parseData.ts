@@ -5,7 +5,7 @@ import { timeSinceHelper } from "./timeSinceHelper";
 import { YOUTUBE_API_URL } from "./constants";
 import { HomePageVideos } from "../store/types";
 
-const API_KEY = process.env.REACT_APP_YT_DATA_API_KEY;
+const API_KEY = process.env.REACT_APP_YT_DATA_API_KEYV2;
 
 export const parseData = async (items: any[]) => {
   try {
