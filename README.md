@@ -11,7 +11,7 @@
 
 3. The project has ci/cd pipeline set with [Netlify](https://docs.netlify.com/cli/get-started/)
 
-<div align="center"><h2>[Production live](https://wiktorkoscielny-youtube-clone.netlify.app)</h2></div>
+<div align="center"><h2><a href="https://wiktorkoscielny-youtube-clone.netlify.app">Production Live</a></h2></div>
 
 ## YT Clone
 
