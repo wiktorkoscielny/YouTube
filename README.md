@@ -1,4 +1,6 @@
-<img src="https://github.com/wiktorkoscielny/YouTube/blob/YT-25/src/youtube/style/assets/yt-logo.png" width="500" alt="YouTube Logo" />
+<div align="center">
+<img src="https://github.com/wiktorkoscielny/YouTube/blob/YT-25/src/youtube/style/assets/yt-logo.png" width="300" alt="YouTube Logo" />
+</div>
 
 ## Welcome to my repository! 🚀 
 
