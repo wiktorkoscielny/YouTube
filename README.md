@@ -13,8 +13,7 @@
 
 <div align="center"><h2><a href="https://wiktorkoscielny-youtube-clone.netlify.app">Production Live</a></h2></div>
 
-## YT Clone
-
+## YouTube Clone
 Created using: 
 
 <img src="https://miro.medium.com/v2/resize:fit:1200/1*et_kPtJUzLi0GMYP9JlVmg.gif" width="300" alt="React Logo" />
@@ -22,7 +21,7 @@ Created using:
 ### Quick start
 
 Use one of the packages `npm` or `yarn`
-- Install React and following dependencies:
+Install React and following dependencies:
    ```
    npx create-react-app YouTubeClone
    cd YouTubeClone
@@ -35,11 +34,11 @@ Use one of the packages `npm` or `yarn`
    npm i react-infinite-scroll-component
    npm i axios
    ```
-- Import this project
-- Start it up by running:
+Import this project
+Start it up by running:
     ```bash
     npm run start
     ```
 ### Troubleshooting 
-- ```npm run start``` fails.
+   ```npm run start``` fails.
   - Read the error message, we give you helpful hints and solutions on what has gone wrong.
