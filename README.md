@@ -4,12 +4,14 @@
 
 ## Welcome to my repository! 🚀 
 
-This repository was made to showcase, and develop [React](https://react.dev), [Typescript](https://www.typescriptlang.org
+1. This repository was made to showcase, and develop [React](https://react.dev), [Typescript](https://www.typescriptlang.org
 ), [Redux](https://redux.js.org), and [Tailwind](https://tailwindcss.com) skills.
 
-Data fetched from [YoutubeAPI](https://developers.google.com/youtube/v3/docs?hl=pl)
+2. Data fetched from [YoutubeAPI](https://developers.google.com/youtube/v3/docs?hl=pl)
 
-The project has ci/cd pipeline set with [Netlify](https://docs.netlify.com/cli/get-started/)
+3. The project has ci/cd pipeline set with [Netlify](https://docs.netlify.com/cli/get-started/)
+
+<div align="center"><h2>[Production live](https://wiktorkoscielny-youtube-clone.netlify.app)</h2></div>
 
 ## YT Clone
 
